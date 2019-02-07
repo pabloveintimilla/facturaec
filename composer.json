@@ -1,0 +1,24 @@
+{
+    "name": "pabloveintimilla/facturaec",
+    "description": "PHP library to handle electronic invoices of Ecuador (SRI)",
+    "keywords": ["php", "sri", "ecuador", "facturacion"],
+    "license": "AGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Pablo Veintimilla Vargas",
+            "email": "pabloveintimilla@gmail.com"
+        }
+    ],
+    "type": "project",
+    "require": {
+		"php": ">=7.1"
+    },
+    "require-dev": {
+		"phpunit/phpunit": "6.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "PabloVeintimilla\\FacturaEC\\": "src/"
+        }
+    }
+}
