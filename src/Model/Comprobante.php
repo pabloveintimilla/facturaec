@@ -34,8 +34,7 @@ abstract class Comprobante
     private $digitoVerificador;
 
     /**
-     * @access public
-     * @param  aFechaEmision
+     * @param  \DateTime $fechaEmision
      */
     public function setFechaEmision(\DateTime $fechaEmision)
     {
@@ -54,7 +53,6 @@ abstract class Comprobante
 
     /**
      * @access    public
-     * @param     string aTipoComprobante
      * @ParamType $tipoComprobante string
      */
     public function setTipoComprobante($tipoComprobante)

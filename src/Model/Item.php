@@ -2,12 +2,13 @@
 
 namespace PabloVeintimilla\FacturaEC\Model;
 
+
 /**
  * Item of comprobante electrónico
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-class Item
+abstract class Item
 {
     /**
      * @var Comprobante Comprobante reference
