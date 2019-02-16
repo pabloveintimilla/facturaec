@@ -23,3 +23,12 @@ services:
     Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff: ~ 
     # Debug functions should not be left in the code
     Symplify\CodingStandard\Sniffs\Debug\DebugFunctionCallSniff: ~ 
+    # Cecheck commments
+    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclaration: ~
+    # Enforces configurable number of lines before first content (description or annotation)
+    SlevomatCodingStandard\Sniffs\Commenting\DocCommentSpacing : ~   
+    # check for forgotten "git merge" conflicts
+    PHP_CodeSniffer\Standards\Generic\Sniffs\VersionControl\GitMergeConflictSniff: ~  
+    # Check Complexity
+    Symplify\CodingStandard\Sniffs\CleanCode\CognitiveComplexitySniff: 
+             maxCognitiveComplexity: 8  

@@ -110,13 +110,21 @@ abstract class Comprobante
     {
         return $this->digitoVerificador;
     }
-
+    /**
+     *
+     * @param string $numeroComprobante
+     * @return $this
+     */
     public function setNumeroComprobante($numeroComprobante)
     {
         $this->numeroComprobante = $numeroComprobante;
         return $this;
     }
-
+    /**
+     *
+     * @param string $razonSocial
+     * @return $this
+     */
     public function setRazonSocial($razonSocial)
     {
         $this->razonSocial = $razonSocial;
