@@ -2,58 +2,56 @@
 
 namespace PabloVeintimilla\FacturaEC\Model;
 
-/**
- * Generic class that represent Comprobante electrónico.
- *
- * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
- * @license https://spdx.org/licenses/AGPL-3.0-or-later.html AGPL-3.0-or-later
- */
-abstract class Comprobante
-{
-    private $numeroComprobante;
-    private $razonSocial;
+use JMS\Serializer\Annotation as JMSSerializer;
 
+/**
+ * Contiene la informacion tributaria generica.
+ * 
+ * @JMSSerializer\ExclusionPolicy("all")
+ * @JMSSerializer\XmlRoot("infoTributaria")
+ * 
+ * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
+ */
+class Tributaria
+{
     /**
-     * @var string
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("string")
+     * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("codDoc")
+     */
+    private $numeroComprobante;
+    /**
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("string")
+     * @JMSSerializer\XmlElement(cdata=false)
+     */
+    private $razonSocial;
+    /**
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("string")
+     * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("ruc")
      */
     private $numeroRUC;
-
-    /**
-     * @var \DateTime Date of issue of comprobante
-     */
-    private $fechaEmision;
-
-    /**
-     * @var string Number of type: 01 factura, 04 note de crédito
-     */
     private $tipoComprobante;
+    /**
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("string")
+     * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("ambiente")
+     */
     private $tipoAmbiente;
     private $serie;
     private $codigoNumerico;
+    /**
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("string")
+     * @JMSSerializer\XmlElement(cdata=false)
+     */
     private $tipoEmision;
     private $digitoVerificador;
 
-    /**
-     * @param \DateTime $fechaEmision
-     */
-    public function setFechaEmision(\DateTime $fechaEmision)
-    {
-        $this->fechaEmision = $fechaEmision;
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getFechaEmision()
-    {
-        return $this->fechaEmision;
-    }
-
-    /**
-     * @ParamType $tipoComprobante string
-     */
     public function setTipoComprobante($tipoComprobante)
     {
         $this->tipoComprobante = $tipoComprobante;
@@ -63,7 +61,6 @@ abstract class Comprobante
 
     /**
      * @return string
-     * @ReturnType string
      */
     public function getTipoComprobante()
     {
