@@ -1,6 +1,6 @@
 # Symplify/EasyCodingStandard
 imports:
-    - { resource: 'vendor/symplify/easy-coding-standard/config/clean-code.yml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/symfony.yml' }
 
 services:
     # Make sure That @param, @var, @return and @throw Types Exist

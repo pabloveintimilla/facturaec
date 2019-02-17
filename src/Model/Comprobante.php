@@ -3,7 +3,7 @@
 namespace PabloVeintimilla\FacturaEC\Model;
 
 /**
- * Generic class that represent Comprobante electrónico
+ * Generic class that represent Comprobante electrónico.
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  * @license https://spdx.org/licenses/AGPL-3.0-or-later.html AGPL-3.0-or-later
@@ -34,16 +34,16 @@ abstract class Comprobante
     private $digitoVerificador;
 
     /**
-     * @param  \DateTime $fechaEmision
+     * @param \DateTime $fechaEmision
      */
     public function setFechaEmision(\DateTime $fechaEmision)
     {
         $this->fechaEmision = $fechaEmision;
+
         return $this;
     }
 
     /**
-     *
      * @return \DateTime
      */
     public function getFechaEmision()
@@ -52,18 +52,17 @@ abstract class Comprobante
     }
 
     /**
-     * @access    public
      * @ParamType $tipoComprobante string
      */
     public function setTipoComprobante($tipoComprobante)
     {
         $this->tipoComprobante = $tipoComprobante;
+
         return $this;
     }
 
     /**
-     * @access     public
-     * @return     string
+     * @return string
      * @ReturnType string
      */
     public function getTipoComprobante()
@@ -110,60 +109,70 @@ abstract class Comprobante
     {
         return $this->digitoVerificador;
     }
+
     /**
-     *
      * @param string $numeroComprobante
+     *
      * @return $this
      */
     public function setNumeroComprobante($numeroComprobante)
     {
         $this->numeroComprobante = $numeroComprobante;
+
         return $this;
     }
+
     /**
-     *
      * @param string $razonSocial
+     *
      * @return $this
      */
     public function setRazonSocial($razonSocial)
     {
         $this->razonSocial = $razonSocial;
+
         return $this;
     }
 
     public function setNumeroRUC($numeroRUC)
     {
         $this->numeroRUC = $numeroRUC;
+
         return $this;
     }
 
     public function setTipoAmbiente($tipoAmbiente)
     {
         $this->tipoAmbiente = $tipoAmbiente;
+
         return $this;
     }
 
     public function setSerie($serie)
     {
         $this->serie = $serie;
+
         return $this;
     }
 
     public function setCodigoNumerico($codigoNumerico)
     {
         $this->codigoNumerico = $codigoNumerico;
+
         return $this;
     }
 
     public function setTipoEmision($tipoEmision)
     {
         $this->tipoEmision = $tipoEmision;
+
         return $this;
     }
 
     public function setDigitoVerificador($digitoVerificador)
     {
         $this->digitoVerificador = $digitoVerificador;
+
         return $this;
     }
 }

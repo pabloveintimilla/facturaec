@@ -2,9 +2,8 @@
 
 namespace PabloVeintimilla\FacturaEC\Model;
 
-
 /**
- * Factura model
+ * Factura model.
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */

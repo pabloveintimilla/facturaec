@@ -2,9 +2,8 @@
 
 namespace PabloVeintimilla\FacturaEC\Model;
 
-
 /**
- * Item of comprobante electrónico
+ * Item of comprobante electrónico.
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
@@ -16,7 +15,8 @@ abstract class Item
     public $comprobante;
 
     /**
-     * Comprobante object
+     * Comprobante object.
+     *
      * @param \PabloVeintimilla\FacturaEC\Model\Comprobante $comprobante
      */
     public function __construct(Comprobante $comprobante)
