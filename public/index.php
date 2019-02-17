@@ -17,13 +17,19 @@ $comprobante = (new \PabloVeintimilla\FacturaEC\Reader\Factura())
 var_dump($comprobante->read());
 
 // Deserialize
+$factura = new Factura();
+
 $tributaria = new PabloVeintimilla\FacturaEC\Model\Tributaria();
 $tributaria->setRazonSocial('hola')
     ->setNumeroComprobante('1001')
     ->setTipoEmision('01');
 
-$factura = new Factura();
-$factura->setTributaria($tributaria);
+$detalle = new PabloVeintimilla\FacturaEC\Model\FacturaDetalle($factura);
+$detalle->setDescripcion('Producto 1');
+
+
+$factura->setTributaria($tributaria)
+    ->setDetalles([$detalle]);
 
 
 $serializer = $comprobante->getSerializer();

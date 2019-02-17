@@ -2,25 +2,42 @@
 
 namespace PabloVeintimilla\FacturaEC\Model;
 
+use JMS\Serializer\Annotation as JMSSerializer;
+
 /**
- * Item of comprobante electrónico.
+ * Detalle de comprobante electrónico.
+ *
+ * @JMSSerializer\ExclusionPolicy("all")
+ * @JMSSerializer\XmlRoot("detalle")
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
 abstract class Detalle
 {
     /**
-     * @var Tributaria Comprobante reference
+     * @var Comprobante Referencia a objeto comprobante
      */
-    public $tributaria;
+    private $comprobante;
 
     /**
      * Comprobante object.
      *
-     * @param \PabloVeintimilla\FacturaEC\Model\Tributaria $tributaria
+     * @param Comprobante $comprobante
      */
-    public function __construct(Tributaria $tributaria)
+    public function __construct(Comprobante $comprobante)
     {
-        $this->tributaria = $tributaria;
+        $this->comprobante = $comprobante;
+    }
+
+    public function getComprobante(): Comprobante
+    {
+        return $this->comprobante;
+    }
+
+    public function setComprobante(Comprobante $comprobante)
+    {
+        $this->comprobante = $comprobante;
+
+        return $this;
     }
 }
