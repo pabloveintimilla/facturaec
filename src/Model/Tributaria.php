@@ -3,6 +3,8 @@
 namespace PabloVeintimilla\FacturaEC\Model;
 
 use JMS\Serializer\Annotation as JMSSerializer;
+use Elao\Enum\Bridge\Symfony\Validator\Constraint\Enum as AssertEnum;
+use PabloVeintimilla\FacturaEC\Model\Enum\TipoComprobante;
 
 /**
  * Contiene la informacion tributaria generica.
@@ -14,12 +16,6 @@ use JMS\Serializer\Annotation as JMSSerializer;
  */
 class Tributaria
 {
-    /**
-     * @JMSSerializer\Expose
-     * @JMSSerializer\Type ("string")
-     * @JMSSerializer\XmlElement(cdata=false)
-     * @JMSSerializer\SerializedName("codDoc")
-     */
     private $numeroComprobante;
     /**
      * @JMSSerializer\Expose
@@ -34,6 +30,18 @@ class Tributaria
      * @JMSSerializer\SerializedName("ruc")
      */
     private $numeroRUC;
+    /**
+     * Tipo de comprobante.
+     * 
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("string")
+     * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("codDoc")
+     *
+     * @AssertEnum(class="\PabloVeintimilla\FacturaEC\Model\Enum\TipoComprobante", asValue=true)
+     *
+     * @var Enum\TipoComprobante
+     */
     private $tipoComprobante;
     /**
      * @JMSSerializer\Expose
@@ -42,7 +50,16 @@ class Tributaria
      * @JMSSerializer\SerializedName("ambiente")
      */
     private $tipoAmbiente;
+    /**
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("string")
+     * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("secuencial")
+     */
     private $serie;
+    /**
+     * @var string
+     */
     private $codigoNumerico;
     /**
      * @JMSSerializer\Expose
@@ -52,8 +69,18 @@ class Tributaria
     private $tipoEmision;
     private $digitoVerificador;
 
+    /**
+     * @param TipoComprobante $tipoComprobante Enumeración de tipo comprobante
+     *
+     * @return $this
+     *
+     * @throws \UnexpectedValueException
+     */
     public function setTipoComprobante($tipoComprobante)
     {
+        if (!TipoComprobante::accepts($tipoComprobante)) {
+            throw new \UnexpectedValueException("Invalid 'TipoComprobante' value $tipoComprobante");
+        }
         $this->tipoComprobante = $tipoComprobante;
 
         return $this;

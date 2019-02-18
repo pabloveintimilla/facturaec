@@ -12,23 +12,8 @@ use JMS\Serializer\Annotation as JMSSerializer;
  * 
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-class Factura implements Comprobante
+class Factura extends Comprobante
 {
-    /**
-     * @var Tributaria Información tributaria genérica
-     *
-     * @JMSSerializer\Expose
-     * @JMSSerializer\Type("PabloVeintimilla\FacturaEC\Model\Tributaria")
-     * @JMSSerializer\SerializedName("infoTributaria")
-     */
-    private $tributaria;
-    /**
-     * @var Tributaria Información tributaria genérica
-     *
-     * @JMSSerializer\Expose
-     * @JMSSerializer\Type("DateTime")
-     */
-    private $fechaEmision;
     /**
      * @JMSSerializer\Expose
      * @JMSSerializer\Type("array<PabloVeintimilla\FacturaEC\Model\FacturaDetalle>")
@@ -38,24 +23,12 @@ class Factura implements Comprobante
      */
     private $detalles = [];
 
-    public function getTributaria(): Tributaria
-    {
-        return $this->tributaria;
-    }
-
-    public function setTributaria(Tributaria $tributaria)
-    {
-        $this->tributaria = $tributaria;
-
-        return $this;
-    }
-
     /**
      * @return \DateTime
      */
     public function getFechaEmision()
     {
-        return $this->fechaEmision;
+        return $this->tributaria;
     }
 
     /**
@@ -63,7 +36,7 @@ class Factura implements Comprobante
      */
     public function setFechaEmision(\DateTime $fechaEmision)
     {
-        $this->fechaEmision = $fechaEmision;
+        $this->tributaria = $fechaEmision;
 
         return $this;
     }

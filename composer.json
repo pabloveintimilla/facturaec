@@ -14,7 +14,14 @@
         "php": ">=7.2",
         "psr/http-message": "^1.0",
         "symfony/property-access": "^4.2",
-        "jms/serializer": "^2.1"        
+        "jms/serializer": "^2.1",
+        "symfony/validator": "^4.2",
+        "doctrine/annotations": "^1.6",
+        "elao/enum": "^1.5",
+        "symfony/dependency-injection": "^4.2",
+        "symfony/yaml": "^4.2",
+        "symfony/config": "^4.2",
+        "doctrine/cache": "^1.8"        
     },
     "require-dev": {
         "phpunit/phpunit": "^8",
@@ -24,6 +31,7 @@
     "autoload": {
         "psr-4": {
             "PabloVeintimilla\\FacturaEC\\": "src/"
-        }
+        },
+        "classmap": ["src"]
     }
 }

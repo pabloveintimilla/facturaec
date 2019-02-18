@@ -6,6 +6,7 @@ use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Reader base with common operations.
@@ -18,6 +19,10 @@ abstract class Reader
      * @var Serializer;
      */
     private $serializer;
+    /**
+     * @var ValidatorInterface
+     */
+    private $validator;
 
     /**
      * Xml data to read.
@@ -26,7 +31,7 @@ abstract class Reader
      */
     private $xmlData;
 
-    public function __construct()
+    public function __construct(ValidatorInterface $validator)
     {
         $serializer = SerializerBuilder::create()
             ->setPropertyNamingStrategy(new SerializedNameAnnotationStrategy(
@@ -34,6 +39,7 @@ abstract class Reader
                 ));
 
         $this->serializer = $serializer->build();
+        $this->validator = $validator;
     }
 
     public function getSerializer(): Serializer
@@ -61,6 +67,11 @@ abstract class Reader
     protected function getXmlData()
     {
         return $this->xmlData;
+    }
+
+    public function getValidator(): ValidatorInterface
+    {
+        return $this->validator;
     }
 
     abstract public function read();
