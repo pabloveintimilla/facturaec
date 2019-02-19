@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2fa8c0203a5b40e4b728c355b20de99e)](https://www.codacy.com/app/pabloveintimilla/facturaec?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pabloveintimilla/facturaec&amp;utm_campaign=Badge_Grade)
+
 # FacturaEC
 
 ## Introduction
