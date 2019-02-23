@@ -47,9 +47,12 @@ $header->setCompany('Pablo Veintimilla')
 
 $invoice->setHeader($header);
 
-for ($i = 0; $i <= 5; $i++) {
-    $detail = new InvoiceDetail($invoice);
-    $detail->setDescription("Producto $i");
+for ($i = 1; $i <= 3; $i++) {
+    $detail = (new InvoiceDetail($invoice))
+        ->setDescription("Producto $i")
+        ->setQuantity($i)
+        ->setUnitPrice($i * 10)
+        ->setTotal(($i * 10) * $i);
 
     $invoice->addDetail($detail);
 }

@@ -21,15 +21,17 @@ class InvoiceDetail extends Detail
      * @JMSSerializer\SerializedName("descripcion")
      */
     private $description;
+
     /**
      * @JMSSerializer\Expose
      * @JMSSerializer\Type ("float")
      * @JMSSerializer\XmlElement(cdata=false)
-     * @JMSSerializer\SerializedName("descripcion")
+     * @JMSSerializer\SerializedName("cantidad")
      *
      * @var float
      */
     private $quantity;
+
     /**
      * @JMSSerializer\Expose
      * @JMSSerializer\Type ("float")
@@ -39,6 +41,26 @@ class InvoiceDetail extends Detail
      * @var float
      */
     private $unitPrice;
+
+    /**
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("float")
+     * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("descuento")
+     *
+     * @var float
+     */
+    private $discount;
+
+    /**
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("float")
+     * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("precioTotalSinImpuesto")
+     *
+     * @var float
+     */
+    private $total;
 
     public function getDescription()
     {
@@ -53,6 +75,28 @@ class InvoiceDetail extends Detail
     public function getUnitPrice()
     {
         return $this->unitPrice;
+    }
+
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    public function getTotal()
+    {
+        return $this->total;
+    }
+
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+        return $this;
+    }
+
+    public function setTotal($total)
+    {
+        $this->total = $total;
+        return $this;
     }
 
     public function setDescription($description)
