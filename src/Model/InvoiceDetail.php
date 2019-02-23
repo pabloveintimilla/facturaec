@@ -62,6 +62,16 @@ class InvoiceDetail extends Detail
      */
     private $total;
 
+    /**
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type("array<PabloVeintimilla\FacturaEC\Model\Tax>")
+     * @JMSSerializer\SerializedName("impuestos")
+     * @JMSSerializer\XmlList(entry = "impuesto")
+     * 
+     * @var Tax Impuesto
+     */
+    private $tax = [];
+
     public function getDescription()
     {
         return $this->description;
