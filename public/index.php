@@ -28,8 +28,7 @@ $xml = dirname(__DIR__).
 
 $comprobante = $containerBuilder->get('factura.reader')
     ->loadFromFile($xml);
-
-var_dump($comprobante->read());
+dump($comprobante->read());
 
 // Serialize
 $invoice = new Invoice();
@@ -56,4 +55,4 @@ for ($i = 0; $i <= 5; $i++) {
 }
 
 $serializer = $comprobante->getSerializer();
-echo "<pre>" . $serializer->serialize($invoice, 'xml') . "</pre>";
+dump($serializer->serialize($invoice, 'xml'));
