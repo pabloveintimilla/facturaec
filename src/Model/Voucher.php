@@ -22,7 +22,8 @@ abstract class Voucher
 
     /**
      * @JMSSerializer\Expose
-     * @JMSSerializer\Type("array<PabloVeintimilla\FacturaEC\Model\Detail>")
+     * @JMSSerializer\Type("array<PabloVeintimilla\FacturaEC\Model\InvoiceDetail>")
+     * @JMSSerializer\SerializedName("detalles")
      * @JMSSerializer\XmlList(entry = "detalle")
      *
      * @var Detail[]
