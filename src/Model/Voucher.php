@@ -21,14 +21,29 @@ abstract class Voucher
     private $header;
 
     /**
-     * @JMSSerializer\Expose
-     * @JMSSerializer\Type("array<PabloVeintimilla\FacturaEC\Model\InvoiceDetail>")
-     * @JMSSerializer\SerializedName("detalles")
-     * @JMSSerializer\XmlList(entry = "detalle")
+     * Get details of voucher
      *
-     * @var Detail[]
+     * @return Detail[] Array of details
      */
-    private $details = [];
+    abstract public function getDetails();
+
+    /**
+     * Replace all details of voucher type.
+     *
+     * @param Detail[] $details Array of detail
+     *
+     * @return $this.
+     */
+    abstract public function setDetails(array $details);
+
+    /**
+     * Add a detail of voucher type.
+     *
+     * @param Detail $detail Detail object
+     *
+     * @return $this.
+     */
+    abstract public function addDetail(Detail $detail);
 
     /**
      * Return header object of voucher.
@@ -41,60 +56,15 @@ abstract class Voucher
     }
 
     /**
-     * Return detail object of voucher.
-     *
-     * @return Detail[]
-     */
-    public function getDetails()
-    {
-        return $this->details;
-    }
-
-    /**
      * Set header object of voucher.
-     * 
+     *
      * @param Header $header
-     * 
+     *
      * @return $this
      */
     public function setHeader(Header $header)
     {
         $this->header = $header;
-
-        return $this;
-    }
-
-    /**
-     * Implements set detail of voucher type.
-     *
-     * @param Detail[] $details Array of detail
-     *
-     * @return $this.
-     */
-    public function setDetails(array $details)
-    {
-        foreach ($details as $detail) {
-            try {
-                $this->addDetail($detail);
-            } catch (\Exception $exception) {
-                continue;
-            }
-        }
-        $this->details = $details;
-
-        return $this;
-    }
-
-    /**
-     * Implements set detail of voucher type.
-     *
-     * @param Detail $detail Detail object
-     *
-     * @return $this.
-     */
-    public function addDetail(Detail $detail)
-    {
-        $this->details[] = $detail;
 
         return $this;
     }
