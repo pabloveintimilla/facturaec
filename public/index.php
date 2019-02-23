@@ -1,28 +1,30 @@
 <?php
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use PabloVeintimilla\FacturaEC\Model\Factura;
+use PabloVeintimilla\FacturaEC\Model\Invoice;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-$autoloader = require dirname(__DIR__) . '/vendor/autoload.php';
+use PabloVeintimilla\FacturaEC\Model\InvoiceDetail;
+
+$autoloader = require dirname(__DIR__).'/vendor/autoload.php';
 AnnotationRegistry::registerLoader([$autoloader, 'loadClass']);
 
 // init service container
 $containerBuilder = new ContainerBuilder();
 
 // init yaml file loader
-$config = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR;
+$config = dirname(__DIR__).DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR;
 $loader = new YamlFileLoader($containerBuilder, new FileLocator($config));
 $loader->load('services.yml');
 
 // Deserialize
-$xml = dirname(__DIR__) . 
-    DIRECTORY_SEPARATOR . 'resources' .
-    DIRECTORY_SEPARATOR . 'schemas' .
-    DIRECTORY_SEPARATOR . 'xml' .
-    DIRECTORY_SEPARATOR . 'Factura_V_2_0_0.xml';
+$xml = dirname(__DIR__).
+    DIRECTORY_SEPARATOR.'resources'.
+    DIRECTORY_SEPARATOR.'schemas'.
+    DIRECTORY_SEPARATOR.'xml'.
+    DIRECTORY_SEPARATOR.'Factura_V_2_0_0.xml';
 
 $comprobante = $containerBuilder->get('factura.reader')
     ->loadFromFile($xml);
@@ -30,21 +32,28 @@ $comprobante = $containerBuilder->get('factura.reader')
 var_dump($comprobante->read());
 
 // Serialize
-$factura = new Factura();
+$invoice = new Invoice();
 
-$tributaria = new PabloVeintimilla\FacturaEC\Model\Tributaria();
-$tributaria->setRazonSocial('hola')
-    ->setNumeroComprobante('1001')
-    ->setTipoEmision('1')
-    ->setTipoComprobante('01');
+$header = new PabloVeintimilla\FacturaEC\Model\Header();
+$header->setCompany('Pablo Veintimilla')
+    ->setName('Clouder 7')
+    ->setIdentification('1719415677')
+    ->setAddress('Quito')
+    ->setStore('001')
+    ->setPoint('002')
+    ->setSequential('0000000003')
+    ->setVoucherType('01')
+    ->setEnviromentType('1')
+    ->setEmissionType('1');
 
-$detalle = new PabloVeintimilla\FacturaEC\Model\FacturaDetalle($factura);
-$detalle->setDescripcion('Producto 1');
+$invoice->setHeader($header);
 
+for ($i = 0; $i <= 5; $i++) {
+    $detail = new InvoiceDetail($invoice);
+    $detail->setDescription("Producto $i");
 
-$factura->setTributaria($tributaria)
-    ->setDetalles([$detalle]);
-
+    $invoice->addDetail($detail);
+}
 
 $serializer = $comprobante->getSerializer();
-var_dump($serializer->serialize($factura, 'xml'));
+echo "<pre>" . $serializer->serialize($invoice, 'xml') . "</pre>";

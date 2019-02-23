@@ -5,70 +5,73 @@ namespace PabloVeintimilla\FacturaEC\Model;
 use JMS\Serializer\Annotation as JMSSerializer;
 
 /**
- * Factura detalle model.
+ * Invoice detail model.
  *
  * @JMSSerializer\ExclusionPolicy("all")
  * @JMSSerializer\XmlRoot("detalle")
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-class FacturaDetalle extends Detalle
+class InvoiceDetail extends Detail
 {
     /**
      * @JMSSerializer\Expose
      * @JMSSerializer\Type ("string")
      * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("descripcion")
      */
-    private $descripcion;
+    private $description;
     /**
      * @JMSSerializer\Expose
      * @JMSSerializer\Type ("float")
      * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("descripcion")
      *
      * @var float
      */
-    private $cantidad;
+    private $quantity;
     /**
      * @JMSSerializer\Expose
      * @JMSSerializer\Type ("float")
      * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("precioUnitario")
      *
      * @var float
      */
-    private $precioUnitario;
+    private $unitPrice;
 
-    public function getDescripcion()
+    public function getDescription()
     {
-        return $this->descripcion;
+        return $this->description;
     }
 
-    public function setDescripcion($descripcion)
+    public function getQuantity()
     {
-        $this->descripcion = $descripcion;
+        return $this->quantity;
+    }
+
+    public function getUnitPrice()
+    {
+        return $this->unitPrice;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getCantidad()
+    public function setQuantity($quantity)
     {
-        return $this->cantidad;
-    }
-
-    public function setCantidad($cantidad)
-    {
-        $this->cantidad = $cantidad;
+        $this->quantity = $quantity;
 
         return $this;
     }
 
-    public function getPrecioUnitario()
+    public function setUnitPrice($unitPrice)
     {
-        return $this->precioUnitario;
-    }
-
-    public function setPrecioUnitario($precioUnitario)
-    {
-        $this->precioUnitario = $precioUnitario;
+        $this->unitPrice = $unitPrice;
 
         return $this;
     }

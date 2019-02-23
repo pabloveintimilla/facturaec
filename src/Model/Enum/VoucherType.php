@@ -6,11 +6,11 @@ use Elao\Enum\Enum;
 use Elao\Enum\AutoDiscoveredValuesTrait;
 
 /**
- * Tipos de comprobantes que pueden generar los contribuyentes.
+ * Voucher type. (Tipos de comprobantes que pueden generar los contribuyentes).
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-final class TipoComprobante extends Enum
+final class VoucherType extends Enum
 {
     use AutoDiscoveredValuesTrait;
     /**

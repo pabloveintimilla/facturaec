@@ -2,7 +2,7 @@
 
 namespace PabloVeintimilla\FacturaEC\Reader;
 
-use PabloVeintimilla\FacturaEC\Model\Factura as FacturaModel;
+use PabloVeintimilla\FacturaEC\Model\Invoice as FacturaModel;
 use Symfony\Component\Validator\Exception\ValidatorException;
 
 /**
@@ -25,7 +25,7 @@ class Factura extends Reader
         $validator = parent::getValidator();
         //TODO: validar todo el objeto, ahora esta quemado que valida solo tributación. Debe validar en casacada
         /** @var Symfony\Component\Validator\ConstraintViolation[] */
-        $errors = $validator->validate($this->facturaModel->getTributaria());
+        $errors = $validator->validate($this->facturaModel->getHeader());
         if ($errors->count() > 0) {
             throw new ValidatorException((string) $errors);
         }

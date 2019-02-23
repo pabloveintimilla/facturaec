@@ -3,20 +3,21 @@
     <infoTributaria>
         <ambiente>1</ambiente>
         <tipoEmision>1</tipoEmision>
-        <razonSocial>razonSocial0</razonSocial>
-        <ruc>0000000000001</ruc>
-        <claveAcceso>0000000000000000000000000000000000000000000000000</claveAcceso>
+        <razonSocial>Pablo Veintimilla</razonSocial>
+        <nombreComercial>Clouder7</nombreComercial>
+        <ruc>1719415678001</ruc>
+        <claveAcceso>0000000000000000000000000000000000000000000000201</claveAcceso>
         <codDoc>01</codDoc>
-        <estab>000</estab>
-        <ptoEmi>000</ptoEmi>
-        <secuencial>000000000</secuencial>
-        <dirMatriz>dirMatriz0</dirMatriz>
+        <estab>001</estab>
+        <ptoEmi>001</ptoEmi>
+        <secuencial>000000001</secuencial>
+        <dirMatriz>Quito</dirMatriz>
     </infoTributaria>
     <infoFactura>
-        <fechaEmision>01/01/2000</fechaEmision>
+        <fechaEmision>01/01/2019</fechaEmision>
         <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
-        <razonSocialComprador>razonSocialComprador0</razonSocialComprador>
-        <identificacionComprador>identificacionCompra</identificacionComprador>
+        <razonSocialComprador>Pablo Veintimilla</razonSocialComprador>
+        <identificacionComprador>1719415678</identificacionComprador>
         <totalSinImpuestos>50.00</totalSinImpuestos>
         <totalDescuento>0.00</totalDescuento>
         <totalConImpuestos>
@@ -37,10 +38,10 @@
     </infoFactura>
     <detalles>
         <detalle>
-            <descripcion>descripcion0</descripcion>
-            <cantidad>50.00</cantidad>
+            <descripcion>Producto 1</descripcion>
+            <cantidad>1.00</cantidad>
             <precioUnitario>50.00</precioUnitario>
-            <descuento>50.00</descuento>
+            <descuento>0.00</descuento>
             <precioTotalSinImpuesto>50.00</precioTotalSinImpuesto>
             <impuestos>
                 <impuesto>
