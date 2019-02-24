@@ -21,7 +21,3 @@ services:
     validator.validator_factory:
         class: Symfony\Component\Validator\ContainerConstraintValidatorFactory
         arguments: ['@service_container'] 
-    # Reader
-    factura.reader:
-        class: PabloVeintimilla\FacturaEC\Reader\Factura
-        arguments: ['@validator']        

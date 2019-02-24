@@ -6,40 +6,51 @@ use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+use PabloVeintimilla\FacturaEC\Model\Voucher;
 
 /**
- * Reader base with common operations.
+ * Reader from xml base with common operations.
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-abstract class Reader
+class Reader
 {
+    /**
+     * Full class of voucher to read.
+     *
+     * @var string;
+     */
+    private $voucherType = null;
     /**
      * @var Serializer;
      */
     private $serializer;
-    /**
-     * @var ValidatorInterface
-     */
-    private $validator;
 
     /**
      * Xml data to read.
      *
      * @var string
      */
-    private $xmlData;
+    private $xmlData = null;
 
-    public function __construct(ValidatorInterface $validator)
+    /**
+     * @param string $voucherType Full name of class to read
+     */
+    public function __construct($voucherType = null)
     {
+        //Check valid voucher type
+        if ($voucherType) {
+            $this->voucherType = is_subclass_of($voucherType, Voucher::class)
+                ? $voucherType
+                : null;
+        }
+        //Instance serializer
         $serializer = SerializerBuilder::create()
             ->setPropertyNamingStrategy(new SerializedNameAnnotationStrategy(
                 new IdenticalPropertyNamingStrategy()
                 ));
 
         $this->serializer = $serializer->build();
-        $this->validator = $validator;
     }
 
     public function getSerializer(): Serializer
@@ -69,10 +80,20 @@ abstract class Reader
         return $this->xmlData;
     }
 
-    public function getValidator(): ValidatorInterface
+    /**
+     * Deserialize xml into a Voucher object.
+     *
+     * @return Voucher
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function deserialize()
     {
-        return $this->validator;
-    }
+        if (!$this->xmlData) {
+            throw new \InvalidArgumentException('Not xml data');
+        }
 
-    abstract public function read();
+        return $this->serializer
+            ->deserialize($this->xmlData, $this->voucherType, 'xml');
+    }
 }
