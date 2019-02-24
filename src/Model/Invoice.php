@@ -25,8 +25,37 @@ class Invoice extends Voucher
     private $details = [];
     /**
      * @var float
+     *
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type("float")
+     * @JMSSerializer\SerializedName("propina")
+     */
+    private $tip;
+    /**
+     * @var float
+     *
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type("float")
+     * @JMSSerializer\SerializedName("totalDescuento")
+     */
+    private $discount;
+    /**
+     * @var float
+     *
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type("float")
+     * @JMSSerializer\SerializedName("totalSinImpuestos")
      */
     private $subtotal;
+    /**
+     * @var Tax{]
+     *
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type("array<PabloVeintimilla\FacturaEC\Model\Tax>")
+     * @JMSSerializer\SerializedName("totalConImpuestos")
+     * @JMSSerializer\XmlList(entry = "totalImpuesto")
+     */
+    private $taxs;
 
     /**
      * Return detail object of voucher.
@@ -69,18 +98,6 @@ class Invoice extends Voucher
     public function addDetail(Detail $detail)
     {
         $this->details[] = $detail;
-
-        return $this;
-    }
-
-    public function getSubtotal()
-    {
-        return $this->subtotal;
-    }
-
-    public function setSubtotal($subtotal)
-    {
-        $this->subtotal = $subtotal;
 
         return $this;
     }

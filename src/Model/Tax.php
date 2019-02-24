@@ -39,8 +39,19 @@ class Tax
      * @JMSSerializer\Type ("float")
      * @JMSSerializer\XmlElement(cdata=false)
      * @JMSSerializer\SerializedName("tarifa")
+     * @JMSSerializer\SkipWhenEmpty
      */
     private $rate;
+    /**
+     * @var float Aplly in total tax
+     *
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("float")
+     * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("descuentoAdicional")
+     * @JMSSerializer\SkipWhenEmpty
+     */
+    private $discount;
     /**
      * @var string Código de porcentaje
      *

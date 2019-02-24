@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <factura id="comprobante" version="1.1.0">
+    <ambiente>2</ambiente>
+    <tipoEmision>1</tipoEmision>    
+    <claveAcceso>0102201901179001691900120021010002305150103008818</claveAcceso>
+    <codDoc>01</codDoc>
+    <estab>002</estab>
+    <ptoEmi>101</ptoEmi>
+    <secuencial>000230515</secuencial>    
+    <fechaEmision>01/02/2019</fechaEmision>    
+    <totalSinImpuestos>18.73</totalSinImpuestos>
+    <totalDescuento>2.79</totalDescuento>
+    <totalConImpuestos>
+        <totalImpuesto>
+            <codigo>2</codigo>
+            <codigoPorcentaje>2</codigoPorcentaje>
+            <descuentoAdicional>0.00</descuentoAdicional>
+            <baseImponible>13.76</baseImponible>
+            <valor>1.66</valor>
+        </totalImpuesto>
+        <totalImpuesto>
+            <codigo>2</codigo>
+            <codigoPorcentaje>0</codigoPorcentaje>
+            <descuentoAdicional>0.00</descuentoAdicional>
+            <baseImponible>4.97</baseImponible>
+            <valor>0.00</valor>
+        </totalImpuesto>
+    </totalConImpuestos>
+    <propina>0</propina>
+    <importeTotal>20.39</importeTotal>
+    <moneda>DOLAR</moneda>
+    <pagos>
+        <pago>
+            <formaPago>19</formaPago>
+            <total>20.39</total>
+            <plazo>0</plazo>
+            <unidadTiempo>dias</unidadTiempo>
+        </pago>
+    </pagos>    
     <infoTributaria>
-        <ambiente>2</ambiente>
-        <tipoEmision>1</tipoEmision>
         <razonSocial>CORPORACION FAVORITA C.A.</razonSocial>
         <nombreComercial>CORPORACION FAVORITA C.A.</nombreComercial>
         <ruc>1790016919001</ruc>
-        <claveAcceso>0102201901179001691900120021010002305150103008818</claveAcceso>
-        <codDoc>01</codDoc>
-        <estab>002</estab>
-        <ptoEmi>101</ptoEmi>
-        <secuencial>000230515</secuencial>
         <dirMatriz>AV. GENERAL ENRIQUEZ VIA COTOGCHOA</dirMatriz>
     </infoTributaria>
     <infoFactura>
-        <fechaEmision>01/02/2019</fechaEmision>
         <dirEstablecimiento>AV. AMAZONAS N36-152 Y AV. NACIONES UNIDAS</dirEstablecimiento>
         <contribuyenteEspecial>5368</contribuyenteEspecial>
         <obligadoContabilidad>SI</obligadoContabilidad>
         <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
         <razonSocialComprador>VEINTIMILLA VARGAS PABLO</razonSocialComprador>
         <identificacionComprador>00000000001</identificacionComprador>
-        <totalSinImpuestos>18.73</totalSinImpuestos>
-        <totalDescuento>2.79</totalDescuento>
-        <totalConImpuestos>
-            <totalImpuesto>
-                <codigo>2</codigo>
-                <codigoPorcentaje>2</codigoPorcentaje>
-                <descuentoAdicional>0.00</descuentoAdicional>
-                <baseImponible>13.76</baseImponible>
-                <valor>1.66</valor>
-            </totalImpuesto>
-            <totalImpuesto>
-                <codigo>2</codigo>
-                <codigoPorcentaje>0</codigoPorcentaje>
-                <descuentoAdicional>0.00</descuentoAdicional>
-                <baseImponible>4.97</baseImponible>
-                <valor>0.00</valor>
-            </totalImpuesto>
-        </totalConImpuestos>
-        <propina>0</propina>
-        <importeTotal>20.39</importeTotal>
-        <moneda>DOLAR</moneda>
-        <pagos>
-            <pago>
-                <formaPago>19</formaPago>
-                <total>20.39</total>
-                <plazo>0</plazo>
-                <unidadTiempo>dias</unidadTiempo>
-            </pago>
-        </pagos>
     </infoFactura>
     <detalles>
         <detalle>

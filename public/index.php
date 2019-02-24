@@ -7,6 +7,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 use PabloVeintimilla\FacturaEC\Model\InvoiceDetail;
+use PabloVeintimilla\FacturaEC\Model\Seller;
 
 $autoloader = require dirname(__DIR__).'/vendor/autoload.php';
 AnnotationRegistry::registerLoader([$autoloader, 'loadClass']);
@@ -31,13 +32,7 @@ $comprobante = $containerBuilder->get('factura.reader')
 dump($comprobante->read());
 
 // Serialize
-$invoice = new Invoice();
-
-$header = new PabloVeintimilla\FacturaEC\Model\Seller();
-$header->setCompany('Pablo Veintimilla')
-    ->setName('Clouder 7')
-    ->setIdentification('1719415677')
-    ->setAddress('Quito')
+$invoice = (new Invoice())
     ->setStore('001')
     ->setPoint('002')
     ->setSequential('0000000003')
@@ -45,7 +40,12 @@ $header->setCompany('Pablo Veintimilla')
     ->setEnviromentType('1')
     ->setEmissionType('1');
 
-$invoice->setSeller($header);
+$seller = (new Seller())
+    ->setCompany('Pablo Veintimilla')
+    ->setName('Clouder 7')
+    ->setIdentification('1719415677')
+    ->setAddress('Quito');
+$invoice->setSeller($seller);
 
 for ($i = 1; $i <= 3; $i++) {
     $detail = (new InvoiceDetail($invoice))
