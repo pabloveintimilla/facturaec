@@ -12,16 +12,16 @@ use JMS\Serializer\Annotation as JMSSerializer;
 abstract class Voucher
 {
     /**
-     * @var Header información voucher
+     * @var Seller información voucher
      *
      * @JMSSerializer\Expose
-     * @JMSSerializer\Type("PabloVeintimilla\FacturaEC\Model\Header")
+     * @JMSSerializer\Type("PabloVeintimilla\FacturaEC\Model\Seller")
      * @JMSSerializer\SerializedName("infoTributaria")
      */
-    private $header;
+    private $seller;
 
     /**
-     * @var Header información voucher
+     * @var Seller información voucher
      *
      * @JMSSerializer\Expose
      * @JMSSerializer\Type("PabloVeintimilla\FacturaEC\Model\Buyer")
@@ -55,25 +55,25 @@ abstract class Voucher
     abstract public function addDetail(Detail $detail);
 
     /**
-     * Return header object of voucher.
+     * Return seller object of voucher.
      *
-     * @return Header
+     * @return Seller
      */
-    public function getHeader(): Header
+    public function getSeller(): Seller
     {
-        return $this->header;
+        return $this->seller;
     }
 
     /**
-     * Set header object of voucher.
+     * Set seller object of voucher.
      *
-     * @param Header $header
+     * @param Seller $seller
      *
      * @return $this
      */
-    public function setHeader(Header $header)
+    public function setSeller(Seller $seller)
     {
-        $this->header = $header;
+        $this->seller = $seller;
 
         return $this;
     }

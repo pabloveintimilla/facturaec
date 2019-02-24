@@ -8,14 +8,14 @@ use PabloVeintimilla\FacturaEC\Model\Enum\VoucherType;
 use PabloVeintimilla\FacturaEC\Model\Enum\EnviromentType;
 
 /**
- * Generic header attributes of voucher (Contiene la informacion tributaria generica).
+ * Generic seller attributes of voucher (Contiene la informacion tributaria generica).
  * 
  * @JMSSerializer\ExclusionPolicy("all")
  * @JMSSerializer\XmlRoot("infoTributaria")
  * 
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-class Header
+class Seller
 {
     /**
      * @var string Establecimiento

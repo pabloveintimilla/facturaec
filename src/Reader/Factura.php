@@ -25,7 +25,7 @@ class Factura extends Reader
         $validator = parent::getValidator();
         //TODO: validar todo el objeto, ahora esta quemado que valida solo tributación. Debe validar en casacada
         /** @var Symfony\Component\Validator\ConstraintViolation[] */
-        $errors = $validator->validate($this->facturaModel->getHeader());
+        $errors = $validator->validate($this->facturaModel->getSeller());
         if ($errors->count() > 0) {
             throw new ValidatorException((string) $errors);
         }
