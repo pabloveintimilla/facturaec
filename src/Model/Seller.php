@@ -89,7 +89,6 @@ class Seller
      * @JMSSerializer\SerializedName("codDoc")
      *
      * @AssertEnum(class="\PabloVeintimilla\FacturaEC\Model\Enum\VoucherType", asValue=true)
-     *
      */
     private $voucherType;
     /**

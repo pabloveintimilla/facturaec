@@ -8,11 +8,20 @@ use JMS\Serializer\Annotation as JMSSerializer;
  * Invoice model (Factura).
  *
  * @JMSSerializer\ExclusionPolicy("all")
+ * @JMSSerializer\VirtualProperty(
+ *     "subtotal",
+ *     exp="object.getVoucher().getSubtotal()",
+ *     options={@JMSSerializer\SerializedName("totalSinImpuestos")}
+ *  )
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
 class Buyer
 {
+    /**
+     * @var Voucher
+     */
+    private $voucher;
     /**
      * @var \DateTime Fecha de emisión format: dd/mm/yyyy
      *
@@ -37,9 +46,10 @@ class Buyer
      * @JMSSerializer\SerializedName("identificacionComprador")
      */
     private $identification;
-    
+
     /**
-     * Get date of emission of voucher
+     * Get date of emission of voucher.
+     *
      * @return \DateTime
      */
     public function getDate(): \DateTime
@@ -48,16 +58,19 @@ class Buyer
     }
 
     /**
-     * Set date of emission of voucher
+     * Set date of emission of voucher.
+     *
      * @return $this
      */
     public function setDate(\DateTime $date)
     {
         $this->date = $date;
+
         return $this;
     }
+
     /**
-     * Get company "Nombre o razón social de comprador"
+     * Get company "Nombre o razón social de comprador".
      *
      * @return string
      */
@@ -65,8 +78,9 @@ class Buyer
     {
         return $this->company;
     }
+
     /**
-     * Get company "RUC, Cedula o pasaporte de comprador"
+     * Get company "RUC, Cedula o pasaporte de comprador".
      *
      * @return string
      */
@@ -74,26 +88,49 @@ class Buyer
     {
         return $this->identification;
     }
+
     /**
-     * et company "Nombre o razón social de comprador"
+     * Set company "Nombre o razón social de comprador".
      *
      * @param string $company
+     *
      * @return $this
      */
     public function setCompany($company)
     {
         $this->company = $company;
+
         return $this;
     }
+
     /**
-     * Set company "RUC, Cedula o pasaporte de comprador"
+     * Set company "RUC, Cedula o pasaporte de comprador".
      *
-     * @param type $identification
+     * @param string $identification
+     *
      * @return $this
      */
     public function setIdentification($identification)
     {
         $this->identification = $identification;
+
+        return $this;
+    }
+
+    public function __construct(Voucher $voucher)
+    {
+        $this->voucher = $voucher;
+    }
+
+    public function getVoucher()
+    {
+        return $this->voucher;
+    }
+
+    public function setVoucher(Voucher $voucher)
+    {
+        $this->voucher = $voucher;
+
         return $this;
     }
 }

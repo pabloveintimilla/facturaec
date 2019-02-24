@@ -31,7 +31,7 @@ class Tax
      * @JMSSerializer\XmlElement(cdata=false)
      * @JMSSerializer\SerializedName("codigoPorcentaje")
      */
-    private $percentage;
+    private $percentageCode;
     /**
      * @var string Establecimiento
      *
@@ -39,7 +39,7 @@ class Tax
      * @JMSSerializer\Type ("float")
      * @JMSSerializer\XmlElement(cdata=false)
      * @JMSSerializer\SerializedName("tarifa")
-     */    
+     */
     private $rate;
     /**
      * @var string Código de porcentaje
@@ -48,7 +48,7 @@ class Tax
      * @JMSSerializer\Type ("float")
      * @JMSSerializer\XmlElement(cdata=false)
      * @JMSSerializer\SerializedName("codigoPorcentaje")
-     */    
+     */
     private $base;
     /**
      * @var string Valor
@@ -57,6 +57,6 @@ class Tax
      * @JMSSerializer\Type ("float")
      * @JMSSerializer\XmlElement(cdata=false)
      * @JMSSerializer\SerializedName("valor")
-     */    
+     */
     private $value;
 }

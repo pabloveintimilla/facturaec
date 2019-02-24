@@ -51,7 +51,6 @@ class InvoiceDetail extends Detail
      * @var float
      */
     private $discount;
-
     /**
      * @JMSSerializer\Expose
      * @JMSSerializer\Type ("float")
@@ -61,6 +60,24 @@ class InvoiceDetail extends Detail
      * @var float
      */
     private $total;
+    /**
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("string")
+     * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("codigoPrincipal")
+     *
+     * @var string
+     */
+    private $codeMain;
+    /**
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("string")
+     * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("codigoAuxiliar")
+     *
+     * @var string
+     */
+    private $codeAuxiliary;
 
     /**
      * @JMSSerializer\Expose
@@ -100,12 +117,14 @@ class InvoiceDetail extends Detail
     public function setDiscount($discount)
     {
         $this->discount = $discount;
+
         return $this;
     }
 
     public function setTotal($total)
     {
         $this->total = $total;
+
         return $this;
     }
 

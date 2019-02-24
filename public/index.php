@@ -24,7 +24,7 @@ $xml = dirname(__DIR__).
     DIRECTORY_SEPARATOR.'resources'.
     DIRECTORY_SEPARATOR.'schemas'.
     DIRECTORY_SEPARATOR.'xml'.
-    DIRECTORY_SEPARATOR.'Factura_V_2_0_0.xml';
+    DIRECTORY_SEPARATOR.'Factura.xml';
 
 $comprobante = $containerBuilder->get('factura.reader')
     ->loadFromFile($xml);
@@ -33,7 +33,7 @@ dump($comprobante->read());
 // Serialize
 $invoice = new Invoice();
 
-$header = new PabloVeintimilla\FacturaEC\Model\Header();
+$header = new PabloVeintimilla\FacturaEC\Model\Seller();
 $header->setCompany('Pablo Veintimilla')
     ->setName('Clouder 7')
     ->setIdentification('1719415677')
@@ -45,7 +45,7 @@ $header->setCompany('Pablo Veintimilla')
     ->setEnviromentType('1')
     ->setEmissionType('1');
 
-$invoice->setHeader($header);
+$invoice->setSeller($header);
 
 for ($i = 1; $i <= 3; $i++) {
     $detail = (new InvoiceDetail($invoice))

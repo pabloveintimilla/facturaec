@@ -12,8 +12,8 @@ use JMS\Serializer\Annotation as JMSSerializer;
  * 
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-class Invoice extends Voucher{
-    
+class Invoice extends Voucher
+{
     /**
      * @JMSSerializer\Expose
      * @JMSSerializer\Type("array<PabloVeintimilla\FacturaEC\Model\InvoiceDetail>")
@@ -24,6 +24,11 @@ class Invoice extends Voucher{
      */
     private $details = [];
     /**
+     * @var float
+     */
+    private $subtotal;
+
+    /**
      * Return detail object of voucher.
      *
      * @return Detail[]
@@ -32,6 +37,7 @@ class Invoice extends Voucher{
     {
         return $this->details;
     }
+
     /**
      * Replace all details of voucher type.
      *
@@ -63,6 +69,18 @@ class Invoice extends Voucher{
     public function addDetail(Detail $detail)
     {
         $this->details[] = $detail;
+
+        return $this;
+    }
+
+    public function getSubtotal()
+    {
+        return $this->subtotal;
+    }
+
+    public function setSubtotal($subtotal)
+    {
+        $this->subtotal = $subtotal;
 
         return $this;
     }

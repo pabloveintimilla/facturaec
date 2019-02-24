@@ -30,7 +30,7 @@ abstract class Voucher
     private $buyer;
 
     /**
-     * Get details of voucher
+     * Get details of voucher.
      *
      * @return Detail[] Array of details
      */
