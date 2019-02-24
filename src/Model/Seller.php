@@ -135,6 +135,7 @@ class Seller
 
         return $this;
     }
+
     /**
      * Set address "Dirección matriz".
      *

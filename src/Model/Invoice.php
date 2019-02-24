@@ -55,7 +55,7 @@ class Invoice extends Voucher
      * @JMSSerializer\SerializedName("totalConImpuestos")
      * @JMSSerializer\XmlList(entry = "totalImpuesto")
      */
-    private $taxs;
+    private $tax;
 
     /**
      * Return detail object of voucher.

@@ -118,7 +118,7 @@ abstract class Voucher
      * @JMSSerializer\Type("string")
      * @JMSSerializer\SerializedName("moneda")
      */
-    private $currency = "DOLAR";
+    private $currency = 'DOLAR';
 
     /**
      * Get details of voucher.
@@ -144,6 +144,7 @@ abstract class Voucher
      * @return $this.
      */
     abstract public function addDetail(Detail $detail);
+
     /**
      * Get date of emission of voucher.
      *
@@ -165,7 +166,7 @@ abstract class Voucher
 
         return $this;
     }
-    
+
     /**
      * Get store "Se detalla el numero del establecimiento".
      *
@@ -319,8 +320,9 @@ abstract class Voucher
 
         return $this;
     }
+
     /**
-     * Set subrotal "Total sin impuestos"
+     * Set subrotal "Total sin impuestos".
      * 
      * @return float
      */
@@ -328,10 +330,12 @@ abstract class Voucher
     {
         return $this->subtotal;
     }
+
     /**
-     * Set subrotal "Total sin impuestos"
+     * Set subrotal "Total sin impuestos".
      *
      * @param float $subtotal
+     *
      * @return $this
      */
     public function setSubtotal($subtotal)
