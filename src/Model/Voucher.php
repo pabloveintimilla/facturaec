@@ -21,6 +21,15 @@ abstract class Voucher
     private $header;
 
     /**
+     * @var Header información voucher
+     *
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type("PabloVeintimilla\FacturaEC\Model\Buyer")
+     * @JMSSerializer\SerializedName("infoFactura")
+     */
+    private $buyer;
+
+    /**
      * Get details of voucher
      *
      * @return Detail[] Array of details

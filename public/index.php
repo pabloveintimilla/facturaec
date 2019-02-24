@@ -58,4 +58,4 @@ for ($i = 1; $i <= 3; $i++) {
 }
 
 $serializer = $comprobante->getSerializer();
-dump($serializer->serialize($invoice, 'xml'));
+// dump($serializer->serialize($invoice, 'xml'));

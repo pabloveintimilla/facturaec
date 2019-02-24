@@ -13,6 +13,7 @@ use JMS\Serializer\Annotation as JMSSerializer;
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
 class Invoice extends Voucher{
+    
     /**
      * @JMSSerializer\Expose
      * @JMSSerializer\Type("array<PabloVeintimilla\FacturaEC\Model\InvoiceDetail>")
