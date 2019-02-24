@@ -10,7 +10,7 @@ use Symfony\Component\Config\Util\Exception\XmlParsingException;
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-class Loader
+trait Loader
 {
     /**
      * Load xml data from a file.
@@ -21,7 +21,7 @@ class Loader
      *
      * @return string of document
      */
-    public static function loadXMLFromFile($fileName)
+    public function loadXMLFromFile($fileName)
     {
         if (!file_exists($fileName)) {
             throw new FileNotFoundException(null, 0, null, $fileName);
@@ -42,7 +42,7 @@ class Loader
      *
      * @return bool
      */
-    public static function isXMLValid($data)
+    public function isXMLValid($data)
     {
         $xml = new \XMLReader();
 

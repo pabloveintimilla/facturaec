@@ -9,39 +9,40 @@ use Symfony\Component\Validator\Validation;
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-Trait Validator
+trait Validator
 {
-
     /**
-     * Check if object is valid
+     * Check if object is valid.
      * 
      * @return bool
      */
     public function isValid(): bool
     {
-        /**
-         * @var Symfony\Component\Validator\ConstraintViolation[]
-         */
+        /** @var Symfony\Component\Validator\ConstraintViolation[] */
         $errors = $this->validate();
         if (!$errors->count()) {
             return true;
         }
+
         return false;
     }
 
     /**
-     * Validate a object
+     * Validate a object.
+     *
      * @param object $object
+     *
      * @return \Symfony\Component\Validator\ConstraintValidator[]
      */
     public function validate($object)
     {
         $validator = $this->initValidation();
+
         return $validator->validate($object);
     }
 
     /**
-     * Create validator and enable annotations
+     * Create validator and enable annotations.
      *
      * @return Validation
      */

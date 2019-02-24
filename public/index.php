@@ -6,9 +6,30 @@ use PabloVeintimilla\FacturaEC\Model\InvoiceDetail;
 use PabloVeintimilla\FacturaEC\Model\Seller;
 use PabloVeintimilla\FacturaEC\Model\Retention;
 use PabloVeintimilla\FacturaEC\Reader\Reader;
+use PabloVeintimilla\FacturaEC\Reader\Adapter;
 
 $autoloader = require dirname(__DIR__).'/vendor/autoload.php';
 AnnotationRegistry::registerLoader([$autoloader, 'loadClass']);
+
+//Transform
+// Deserialize invoice
+$xml = dirname(__DIR__).
+    DIRECTORY_SEPARATOR.'resources'.
+    DIRECTORY_SEPARATOR.'schemas'.
+    DIRECTORY_SEPARATOR.'xml'.
+    DIRECTORY_SEPARATOR.'Factura_V_2_0_0.xml';
+
+$adapter = (new Adapter())
+    ->loadFromFile($xml)
+    ->transform();
+
+$invoice = (new Reader(Invoice::class))
+    ->load($adapter)
+    ->deserialize();
+
+dump($invoice);
+
+die;
 
 // Deserialize invoice
 $xml = dirname(__DIR__).
@@ -17,11 +38,7 @@ $xml = dirname(__DIR__).
     DIRECTORY_SEPARATOR.'xml'.
     DIRECTORY_SEPARATOR.'Factura.xml';
 
-$invoice = (new Reader(Invoice::class))
-    ->loadFromFile($xml)
-    ->deserialize();
 
-dump($invoice);
 dump($invoice->isValid());
 
 // Deserialize retention
