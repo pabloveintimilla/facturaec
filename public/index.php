@@ -22,6 +22,7 @@ $invoice = (new Reader(Invoice::class))
     ->deserialize();
 
 dump($invoice);
+dump($invoice->isValid());
 
 // Deserialize retention
 $xml = dirname(__DIR__).
@@ -35,6 +36,7 @@ $retention = (new Reader(Retention::class))
     ->deserialize();
 
 dump($retention);
+dump($retention->isValid());
 
 // Serialize
 $invoice = (new Invoice())

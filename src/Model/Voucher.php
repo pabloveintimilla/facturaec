@@ -6,14 +6,20 @@ use JMS\Serializer\Annotation as JMSSerializer;
 use Elao\Enum\Bridge\Symfony\Validator\Constraint\Enum as AssertEnum;
 use PabloVeintimilla\FacturaEC\Model\Enum\VoucherType;
 use PabloVeintimilla\FacturaEC\Model\Enum\EnviromentType;
+use PabloVeintimilla\FacturaEC\Validation\Validator;
 
 /**
  * Generic class of 'Comprobante electrónico'.
- *
+ * 
+ * @JMSSerializer\ExclusionPolicy("all")
+ * 
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
 abstract class Voucher
 {
+    use Validator {
+        validate as validateTrait;
+    }
     /**
      * @var \DateTime Fecha de emisión format: dd/mm/yyyy
      *
@@ -22,6 +28,7 @@ abstract class Voucher
      * @JMSSerializer\SerializedName("fechaEmision")
      */
     private $date;
+
     /**
      * @var string Establecimiento
      *
@@ -103,6 +110,7 @@ abstract class Voucher
      * @JMSSerializer\SerializedName("infoFactura")
      */
     private $buyer;
+
     /**
      * @var float
      *
@@ -111,6 +119,7 @@ abstract class Voucher
      * @JMSSerializer\SerializedName("importeTotal")
      */
     private $total;
+
     /**
      * @var string
      *
@@ -367,5 +376,10 @@ abstract class Voucher
         $this->seller = $seller;
 
         return $this;
+    }
+
+    public function validate()
+    {
+        return $this->validateTrait($this);
     }
 }
