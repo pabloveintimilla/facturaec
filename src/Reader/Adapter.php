@@ -11,8 +11,8 @@ use Symfony\Component\DomCrawler\Crawler;
  */
 class Adapter
 {
-    use Loader;
 
+    use Loader;
     /**
      * @var string
      */
@@ -49,14 +49,28 @@ class Adapter
      *
      * @throws \InvalidArgumentException
      */
-    public function transform()
+    public function in()
     {
         if (!$this->xmlData) {
             throw new \InvalidArgumentException('Not xml data');
         }
 
+        //Load sign voucher
         $xml = new \DOMDocument();
         $xml->loadXML($this->xmlData);
+        $voucher = $xml->getElementsByTagName('comprobante');
+
+        foreach ($voucher as $item) {
+            foreach ($item->childNodes as $child) {
+                if ($child->nodeType == XML_CDATA_SECTION_NODE) {
+                   $item = $child->textContent;
+                }
+            }
+        }
+
+        // Load voucher
+        $xml = new \DOMDocument();
+        $xml->loadXML($item);
 
         // Load XSL file
         $xsl = new \DOMDocument();

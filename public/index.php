@@ -14,14 +14,12 @@ AnnotationRegistry::registerLoader([$autoloader, 'loadClass']);
 //Transform
 // Deserialize invoice
 $xml = dirname(__DIR__).
-    DIRECTORY_SEPARATOR.'resources'.
-    DIRECTORY_SEPARATOR.'schemas'.
-    DIRECTORY_SEPARATOR.'xml'.
-    DIRECTORY_SEPARATOR.'Factura_V_2_0_0.xml';
+    DIRECTORY_SEPARATOR.'upload'.
+    DIRECTORY_SEPARATOR.'Factura.xml';
 
 $adapter = (new Adapter())
     ->loadFromFile($xml)
-    ->transform();
+    ->in();
 
 $invoice = (new Reader(Invoice::class))
     ->load($adapter)

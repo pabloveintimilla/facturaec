@@ -13,7 +13,9 @@
     <xsl:template match="/">
         <factura id="comprobante" version="1.1.0">
             <!-- Move elements of parent -->
-            <ambiente>
+            
+            <!-- infoTributaria -->
+            <ambiente> 
                 <xsl:value-of select="factura/infoTributaria/ambiente"/>
             </ambiente>
             <tipoEmision>
@@ -22,12 +24,38 @@
             <claveAcceso>
                 <xsl:value-of select="factura/infoTributaria/claveAcceso"/>
             </claveAcceso>
+            <estab>
+                <xsl:value-of select="factura/infoTributaria/estab"/>
+            </estab>            
             <codDoc>
                 <xsl:value-of select="factura/infoTributaria/codDoc"/>
-            </codDoc>
+            </codDoc> 
+            <estab>
+                <xsl:value-of select="factura/infoTributaria/estab"/>
+            </estab>  
+            <ptoEmi>
+                <xsl:value-of select="factura/infoTributaria/ptoEmi"/>
+            </ptoEmi>  
+            <secuencial>
+                <xsl:value-of select="factura/infoTributaria/secuencial"/>
+            </secuencial>              
+                                    
+            <!-- infoFactura -->
             <fechaEmision>
                 <xsl:value-of select="factura/infoFactura/fechaEmision"/>
-            </fechaEmision>             
+            </fechaEmision>  
+            <propina>
+                <xsl:value-of select="factura/infoFactura/propina"/>
+            </propina>    
+            <totalSinImpuestos>
+                <xsl:value-of select="factura/infoFactura/totalSinImpuestos"/>
+            </totalSinImpuestos>      
+            <totalDescuento>
+                <xsl:value-of select="factura/infoFactura/totalDescuento"/>
+            </totalDescuento>                                                
+            <importeTotal>
+                <xsl:value-of select="factura/infoFactura/importeTotal"/>
+            </importeTotal>               
             
             <!-- Copy other elements -->
             <xsl:copy-of select="factura/infoTributaria"/>
