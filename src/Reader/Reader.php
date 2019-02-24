@@ -44,6 +44,8 @@ class Reader
                 ? $voucherType
                 : null;
         }
+        //TODO: Autodetect voucher type from xml
+
         //Instance serializer
         $serializer = SerializerBuilder::create()
             ->setPropertyNamingStrategy(new SerializedNameAnnotationStrategy(

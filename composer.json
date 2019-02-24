@@ -18,9 +18,6 @@
         "symfony/validator": "^4.2",
         "doctrine/annotations": "^1.6",
         "elao/enum": "^1.5",
-        "symfony/dependency-injection": "^4.2",
-        "symfony/yaml": "^4.2",
-        "symfony/config": "^4.2",
         "doctrine/cache": "^1.8"        
     },
     "require-dev": {
