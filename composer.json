@@ -3,7 +3,7 @@
     "description": "PHP library to handle electronic invoices of Ecuador (SRI)",
     "keywords": ["php", "sri", "ecuador", "facturacion"],
     "license": "AGPL-3.0-or-later",
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Pablo Veintimilla Vargas",
