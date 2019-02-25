@@ -4,6 +4,7 @@
     "keywords": ["php", "sri", "ecuador", "facturacion"],
     "license": "AGPL-3.0-or-later",
     "minimum-stability": "dev",
+    "version": "0.0.1"
     "authors": [
         {
             "name": "Pablo Veintimilla Vargas",
