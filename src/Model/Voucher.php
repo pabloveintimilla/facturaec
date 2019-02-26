@@ -130,29 +130,9 @@ abstract class Voucher
     private $currency = 'DOLAR';
 
     /**
-     * Get details of voucher.
-     *
-     * @return Detail[] Array of details
+     * @var Detail[]
      */
-    abstract public function getDetails();
-
-    /**
-     * Replace all details of voucher type.
-     *
-     * @param Detail[] $details Array of detail
-     *
-     * @return $this.
-     */
-    abstract public function setDetails(array $details);
-
-    /**
-     * Add a detail of voucher type.
-     *
-     * @param Detail $detail Detail object
-     *
-     * @return $this.
-     */
-    abstract public function addDetail(Detail $detail);
+    protected $details = [];
 
     /**
      * Get date of emission of voucher.
@@ -378,6 +358,56 @@ abstract class Voucher
         return $this;
     }
 
+    /**
+     * Get details of voucher.
+     *
+     * @return Detail[] Array of details
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * Replace all details of voucher type.
+     *
+     * @param Detail[] $details Array of detail
+     *
+     * @return $this.
+     */
+    public function setDetails(array $details)
+    {
+        foreach ($details as $detail) {
+            try {
+                $this->addDetail($detail);
+            } catch (\Exception $exception) {
+                continue;
+            }
+        }
+        $this->details = $details;
+
+        return $this;
+    }
+
+    /**
+     * Add a detail of voucher type.
+     *
+     * @param Detail $detail Detail object
+     *
+     * @return $this.
+     */
+    public function addDetail(Detail $detail)
+    {
+        $this->details[] = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Validate object.
+     *
+     * @return \Symfony\Component\Validator\ConstraintValidator[]
+     */
     public function validate()
     {
         return $this->validateTrait($this);

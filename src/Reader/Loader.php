@@ -13,7 +13,6 @@ use Symfony\Component\Finder\Finder;
  */
 trait Loader
 {
-
     /**
      * Load xml data from a file.
      *
@@ -38,15 +37,17 @@ trait Loader
     }
 
     /**
-     * Load valid xml from a directory
+     * Load valid xml from a directory.
      *
      * @param string $diretory Full Path a directory to load xml
+     *
      * @return string[] Array with valid xml contents
+     *
      * @throws FileNotFoundException
      */
     public function loadXMLFromDirectory($diretory)
     {
-        if(!is_dir($diretory)){
+        if (!is_dir($diretory)) {
             throw new FileNotFoundException(null, 0, null, $diretory);
         }
 
@@ -56,7 +57,7 @@ trait Loader
 
         foreach ($finder as $file) {
             $xml = $file->getContents();
-            if($this->isXMLValid($xml)){
+            if ($this->isXMLValid($xml)) {
                 $data[] = $xml;
             }
         }

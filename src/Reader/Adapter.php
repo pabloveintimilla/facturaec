@@ -11,7 +11,6 @@ use Symfony\Component\DomCrawler\Crawler;
  */
 class Adapter
 {
-
     use Loader;
     /**
      * @var string
@@ -49,7 +48,7 @@ class Adapter
      *
      * @throws \InvalidArgumentException
      */
-    public function in()
+    public function tranformIn()
     {
         if (!$this->xmlData) {
             throw new \InvalidArgumentException('Not xml data');
@@ -62,8 +61,8 @@ class Adapter
 
         foreach ($voucher as $item) {
             foreach ($item->childNodes as $child) {
-                if ($child->nodeType == XML_CDATA_SECTION_NODE) {
-                   $item = $child->textContent;
+                if (XML_CDATA_SECTION_NODE == $child->nodeType) {
+                    $item = $child->textContent;
                 }
             }
         }

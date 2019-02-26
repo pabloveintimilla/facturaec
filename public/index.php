@@ -19,7 +19,7 @@ $xml = dirname(__DIR__).
 
 $adapter = (new Adapter())
     ->loadFromFile($xml)
-    ->in();
+    ->tranformIn();
 
 $invoice = (new Reader(Invoice::class))
     ->load($adapter)
