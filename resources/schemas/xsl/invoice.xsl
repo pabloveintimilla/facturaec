@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : factura.xsl
+    Document   : Invoice transform
     Author     : Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
     Description:
         Transform SRI xml format to facturaEC object

@@ -34,7 +34,7 @@ class Reader
     private $data;
 
     /**
-     * @param string $data        Xml data to read
+     * @param type   $data        Xml data to read
      * @param string $voucherType Full name of class to read
      */
     public function __construct($data, $voucherType)

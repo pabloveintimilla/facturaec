@@ -14,23 +14,48 @@ final class VoucherType extends Enum
 {
     use AutoDiscoveredValuesTrait;
     /**
+     * Factura.
+     *
      * @var string
      */
-    const FACTURA = '01';
+    const INVOICE = '01';
     /**
+     * Nota de crédito.
+     *
      * @var string
      */
-    const NOTA_CREDITO = '04';
+    const CREDIT = '04';
     /**
+     * Nota de débito.
+     *
      * @var string
      */
-    const NOTA_DEBITO = '05';
+    const DEBIT = '05';
     /**
+     * Guía de remisión.
+     *
      * @var string
      */
-    const GUIA_REMISION = '07';
+    const REMISSION = '07';
     /**
+     * Comprobante de retensión.
+     * 
      * @var string
      */
-    const COMPROBANTE_RETENCION = '07';
+    const RETENTION = '07';
+
+    /**
+     * Get const name of a value.
+     *
+     * @param int $value
+     *
+     * @return string
+     */
+    public static function getLabel($value)
+    {
+        $class = new \ReflectionClass(__CLASS__);
+        $constants = array_flip($class->getConstants());
+
+        return $constants[$value];
+    }
 }

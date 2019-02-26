@@ -15,7 +15,7 @@ use JMS\Serializer\Annotation as JMSSerializer;
 abstract class Detail
 {
     /**
-     * Force to implement __toString usefull to transform
+     * Force to implement __toString usefull to transform.
      */
     abstract public function __toString();
 }

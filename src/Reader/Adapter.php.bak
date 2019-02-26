@@ -102,11 +102,11 @@ class Adapter
         $xml->loadXML($this->data);
         $root = $xml->documentElement->nodeName;
 
+        //Remove sign
         if ($root = !'autorizacion') {
             return $xml;
         }
 
-        //Remove sign		
         $voucher = $xml->getElementsByTagName('comprobante');
 
         foreach ($voucher as $item) {

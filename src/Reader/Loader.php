@@ -11,7 +11,7 @@ use Symfony\Component\Finder\Finder;
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-trait Loader
+class Loader
 {
     /**
      * Load xml data from a file.
@@ -53,7 +53,7 @@ trait Loader
 
         $data = [];
         $finder = new Finder();
-        $finder->path($diretory)->name('*.xml');
+        $finder->name('*.xml')->in($diretory);
 
         foreach ($finder as $file) {
             $xml = $file->getContents();
