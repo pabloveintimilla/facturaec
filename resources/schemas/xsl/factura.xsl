@@ -12,7 +12,6 @@
     <xsl:output omit-xml-declaration="yes" indent="yes"/>
     <xsl:template match="/">
         <factura id="comprobante" version="1.1.0">
-            <!-- Move elements of parent -->
             
             <!-- infoTributaria -->
             <ambiente> 
@@ -49,13 +48,14 @@
             </propina>    
             <totalSinImpuestos>
                 <xsl:value-of select="factura/infoFactura/totalSinImpuestos"/>
-            </totalSinImpuestos>      
+            </totalSinImpuestos>    
             <totalDescuento>
                 <xsl:value-of select="factura/infoFactura/totalDescuento"/>
             </totalDescuento>                                                
             <importeTotal>
                 <xsl:value-of select="factura/infoFactura/importeTotal"/>
-            </importeTotal>               
+            </importeTotal>   
+            <xsl:copy-of  select="factura/infoFactura/totalConImpuestos"/>
             
             <!-- Copy other elements -->
             <xsl:copy-of select="factura/infoTributaria"/>

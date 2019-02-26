@@ -148,4 +148,10 @@ class InvoiceDetail extends Detail
 
         return $this;
     }
+
+    public function __toString()
+    {
+        $string = "$this->description ($this->total)";
+        return $string;
+    }
 }

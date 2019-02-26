@@ -42,8 +42,9 @@ class Reader
     {
         //Check valid voucher type
         if ($voucherType) {
-            $this->voucherType = is_subclass_of($voucherType, Voucher::class) ? $voucherType
-                    : null;
+            $this->voucherType = is_subclass_of($voucherType, Voucher::class)
+                ? $voucherType
+                : null;
         }
         //TODO: Autodetect voucher type from xml
         //Instance serializer

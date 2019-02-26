@@ -43,7 +43,7 @@ class Tax
      */
     private $rate;
     /**
-     * @var float Aplly in total tax
+     * @var float Aply in total tax
      *
      * @JMSSerializer\Expose
      * @JMSSerializer\Type ("float")
@@ -53,12 +53,12 @@ class Tax
      */
     private $discount;
     /**
-     * @var string Código de porcentaje
+     * @var float Base imponible
      *
      * @JMSSerializer\Expose
      * @JMSSerializer\Type ("float")
      * @JMSSerializer\XmlElement(cdata=false)
-     * @JMSSerializer\SerializedName("codigoPorcentaje")
+     * @JMSSerializer\SerializedName("baseImponible")
      */
     private $base;
     /**

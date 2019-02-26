@@ -47,6 +47,14 @@ class Invoice extends Voucher
      * @JMSSerializer\XmlList(entry = "totalImpuesto")
      */
     private $tax;
+    /**
+     * @var float
+     *
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type("float")
+     * @JMSSerializer\SerializedName("importeTotal")
+     */
+    private $total;
 
     /**
      * Overwrite details property of parent class to define serialization /
@@ -60,4 +68,28 @@ class Invoice extends Voucher
      * @return Detail[]
      */
     protected $details;
+
+    /**
+     * Set subrotal "Total sin impuestos".
+     *
+     * @return float
+     */
+    public function getSubtotal()
+    {
+        return $this->subtotal;
+    }
+
+    /**
+     * Set subrotal "Total sin impuestos".
+     *
+     * @param float $subtotal
+     *
+     * @return $this
+     */
+    public function setSubtotal($subtotal)
+    {
+        $this->subtotal = $subtotal;
+
+        return $this;
+    }
 }

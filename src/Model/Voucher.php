@@ -112,15 +112,6 @@ abstract class Voucher
     private $buyer;
 
     /**
-     * @var float
-     *
-     * @JMSSerializer\Expose
-     * @JMSSerializer\Type("float")
-     * @JMSSerializer\SerializedName("importeTotal")
-     */
-    private $total;
-
-    /**
      * @var string
      *
      * @JMSSerializer\Expose
@@ -306,30 +297,6 @@ abstract class Voucher
     public function setEmissionType($emissionType)
     {
         $this->emissionType = $emissionType;
-
-        return $this;
-    }
-
-    /**
-     * Set subrotal "Total sin impuestos".
-     * 
-     * @return float
-     */
-    public function getSubtotal()
-    {
-        return $this->subtotal;
-    }
-
-    /**
-     * Set subrotal "Total sin impuestos".
-     *
-     * @param float $subtotal
-     *
-     * @return $this
-     */
-    public function setSubtotal($subtotal)
-    {
-        $this->subtotal = $subtotal;
 
         return $this;
     }
