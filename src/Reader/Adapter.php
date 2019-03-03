@@ -102,11 +102,12 @@ class Adapter
         $xml->loadXML($this->data);
         $root = $xml->documentElement->nodeName;
 
-        if ($root = !'autorizacion') {
+        //Check if voucher is signed
+        if ($root == !'autorizacion') {
             return $xml;
         }
 
-        //Remove sign		
+        //Get voucher
         $voucher = $xml->getElementsByTagName('comprobante');
 
         foreach ($voucher as $item) {

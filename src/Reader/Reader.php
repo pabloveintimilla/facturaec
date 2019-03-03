@@ -2,9 +2,6 @@
 
 namespace PabloVeintimilla\FacturaEC\Reader;
 
-use JMS\Serializer\SerializerBuilder;
-use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
-use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use PabloVeintimilla\FacturaEC\Model\Voucher;
 
 /**
@@ -12,26 +9,21 @@ use PabloVeintimilla\FacturaEC\Model\Voucher;
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-class Reader
+abstract class Reader implements IReader
 {
     /**
-     * Full class of voucher to read.
+     * Full class name of voucher type to read.
      *
      * @var string;
      */
-    private $voucherType = null;
+    protected $voucherType = null;
 
     /**
-     * @var Serializer;
-     */
-    private $serializer;
-
-    /**
-     * Xml data to read.
+     * Data to read.
      *
      * @var string
      */
-    private $data;
+    protected $data;
 
     /**
      * @param string $data        Xml data to read
@@ -41,28 +33,9 @@ class Reader
     {
         //Check valid voucher type
         if (!is_subclass_of($voucherType, Voucher::class)) {
-            throw new \LogicException('Invalid voucher type');
+            throw new Exception('Invalid voucher type');
         }
         $this->data = $data;
         $this->voucherType = $voucherType;
-
-        //Instance serializer
-        $serializer = SerializerBuilder::create()
-            ->setPropertyNamingStrategy(new SerializedNameAnnotationStrategy(
-            new IdenticalPropertyNamingStrategy()
-        ));
-
-        $this->serializer = $serializer->build();
-    }
-
-    /**
-     * Deserialize xml into a Voucher object.
-     *
-     * @return Voucher
-     */
-    public function deserialize()
-    {
-        return $this->serializer
-                ->deserialize($this->data, $this->voucherType, 'xml');
     }
 }

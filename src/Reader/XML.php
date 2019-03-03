@@ -12,39 +12,20 @@ use PabloVeintimilla\FacturaEC\Model\Voucher;
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-class Reader
+class XML extends Reader
 {
-    /**
-     * Full class of voucher to read.
-     *
-     * @var string;
-     */
-    private $voucherType = null;
-
     /**
      * @var Serializer;
      */
     private $serializer;
 
     /**
-     * Xml data to read.
-     *
-     * @var string
-     */
-    private $data;
-
-    /**
-     * @param type   $data        Xml data to read
+     * @param string $data        Xml data to read
      * @param string $voucherType Full name of class to read
      */
     public function __construct($data, $voucherType)
     {
-        //Check valid voucher type
-        if (!is_subclass_of($voucherType, Voucher::class)) {
-            throw new \LogicException('Invalid voucher type');
-        }
-        $this->data = $data;
-        $this->voucherType = $voucherType;
+        parent::__construct($data, $voucherType);
 
         //Instance serializer
         $serializer = SerializerBuilder::create()
@@ -60,7 +41,7 @@ class Reader
      *
      * @return Voucher
      */
-    public function deserialize()
+    public function read(): Voucher
     {
         return $this->serializer
                 ->deserialize($this->data, $this->voucherType, 'xml');
