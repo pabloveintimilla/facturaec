@@ -2,7 +2,7 @@
 
 namespace PabloVeintimilla\FacturaEC\Writer;
 
-use PabloVeintimilla\FacturaEC\Model\Voucher;
+use PabloVeintimilla\FacturaEC\Model\Collection\VoucherCollection;
 
 /**
  * Define generic operations to process write.
@@ -14,16 +14,23 @@ interface IWriter
     /**
      * IWriter constructor.
      * 
-     * @param Voucher $voucher
+     * @param VoucherCollection $voucherCollection Array of vouchers
      */
-    public function __construct(Voucher $voucher);
+    public function __construct(VoucherCollection $voucherCollection);
 
     /**
      * Save Voucher to file.
      * 
      * @param string $filename Name of file to save
      *
-     * @throws \PabloVeintimilla\FacturaEC\Writer\Exception
+     * @throws \PabloVeintimilla\FacturaEC\Writer\WriterException
      */
     public function write($filename);
+
+    /**
+     * Get vouchers of collection.
+     *
+     * @return VoucherCollection Array of voucher
+     */
+    public function getVouchers(): VoucherCollection;
 }

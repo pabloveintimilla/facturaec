@@ -5,27 +5,37 @@ use PabloVeintimilla\FacturaEC\Model\Invoice;
 use PabloVeintimilla\FacturaEC\Model\InvoiceDetail;
 use PabloVeintimilla\FacturaEC\Model\Seller;
 use PabloVeintimilla\FacturaEC\Model\Retention;
-use PabloVeintimilla\FacturaEC\Reader\Reader;
+use PabloVeintimilla\FacturaEC\Reader\XML;
 use PabloVeintimilla\FacturaEC\Reader\Adapter;
+use PabloVeintimilla\FacturaEC\Reader\Loader;
+use PabloVeintimilla\FacturaEC\Model\Collection\VoucherCollection;
+use PabloVeintimilla\FacturaEC\Writer\Csv;
 
 $autoloader = require dirname(__DIR__).'/vendor/autoload.php';
 AnnotationRegistry::registerLoader([$autoloader, 'loadClass']);
 
 //Transform
 // Deserialize invoice
-$xml = dirname(__DIR__).
-    DIRECTORY_SEPARATOR.'upload'.
-    DIRECTORY_SEPARATOR.'Factura.xml';
+$directory = dirname(__DIR__).
+    DIRECTORY_SEPARATOR.'upload';
 
-$adapter = (new Adapter())
-    ->loadFromFile($xml)
-    ->tranformIn();
+$loader = (new Loader())
+    ->loadXMLFromDirectory($directory);
 
-$invoice = (new Reader(Invoice::class))
-    ->load($adapter)
-    ->deserialize();
+$invoices = new VoucherCollection();
+foreach ($loader as $data){
+    $adapter = new Adapter($data);
+    $type = ucfirst(strtolower($adapter->getVoucherType()));
+    $class = "PabloVeintimilla\FacturaEC\Model\\".$type;
 
-dump($invoice);
+    $invoice = (new XML($adapter->tranformIn(), $class))
+        ->read();
+
+    $invoices->add($invoice);
+}
+
+$csv = new Csv($invoices);
+$csv->write($directory. DIRECTORY_SEPARATOR . 'csv.csv');
 
 die;
 
@@ -48,7 +58,7 @@ $xml = dirname(__DIR__).
 
 $retention = (new Reader(Retention::class))
     ->loadFromFile($xml)
-    ->deserialize();
+    ->read();
 
 dump($retention);
 dump($retention->isValid());

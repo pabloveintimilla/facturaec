@@ -2,6 +2,8 @@
 
 namespace PabloVeintimilla\FacturaEC\Writer;
 
+use PabloVeintimilla\FacturaEC\Model\Collection\VoucherCollection;
+
 /**
  * Base writer.
  *
@@ -9,5 +11,24 @@ namespace PabloVeintimilla\FacturaEC\Writer;
  */
 abstract class Writer implements IWriter
 {
-    //put your code here
+    /**
+     * @var \PabloVeintimilla\FacturaEC\Model\Collection\VoucherCollectionr;
+     */
+    private $voucherCollectionr;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct(VoucherCollection $voucherCollection)
+    {
+        $this->voucherCollectionr = $voucherCollection;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getVouchers(): VoucherCollection
+    {
+        return $this->voucherCollectionr;
+    }
 }

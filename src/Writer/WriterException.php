@@ -1,6 +1,6 @@
 <?php
 
-namespace PabloVeintimilla\FacturaEC\Reader;
+namespace PabloVeintimilla\FacturaEC\Writer;
 
 use PabloVeintimilla\FacturaEC\Exception as FacturaECException;
 
@@ -9,6 +9,6 @@ use PabloVeintimilla\FacturaEC\Exception as FacturaECException;
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-class Exception extends FacturaECException
+class WriterException extends FacturaECException
 {
 }

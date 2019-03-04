@@ -15,8 +15,6 @@ services:
     Symplify\CodingStandard\Fixer\Naming\PropertyNameMatchingTypeFixer: ~  
     # Array property should have default value, to prevent undefined array issues
     Symplify\CodingStandard\Fixer\Property\ArrayPropertyDefaultValueFixer: ~ 
-    # Use services and constructor injection over static method
-    Symplify\CodingStandard\Sniffs\CleanCode\ForbiddenStaticFunctionSniff: ~ 
     # Constant should have docblock comment
     Symplify\CodingStandard\Sniffs\Commenting\VarConstantCommentSniff: ~ 
     # There should not be comments with valid code

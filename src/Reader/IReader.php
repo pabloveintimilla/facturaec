@@ -22,7 +22,7 @@ interface IReader
      *
      * @return Voucher Voucher object read
      *
-     * @throws \PabloVeintimilla\FacturaEC\Writer\Exception
+     * @throws \PabloVeintimilla\FacturaEC\Reader\ReaderException
      */
     public function read(): Voucher;
 }

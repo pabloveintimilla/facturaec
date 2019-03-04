@@ -9,13 +9,13 @@ use PabloVeintimilla\FacturaEC\Model\Enum\EnviromentType;
 use PabloVeintimilla\FacturaEC\Validation\Validator;
 
 /**
- * Generic class of 'Comprobante electrónico'.
+ * Base class of voucher 'Comprobante electrónico'.
  * 
  * @JMSSerializer\ExclusionPolicy("all")
  * 
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-abstract class Voucher
+abstract class Voucher implements IVoucher
 {
     use Validator {
         validate as validateTrait;
@@ -180,9 +180,9 @@ abstract class Voucher
     /**
      * Get voucher type "Tipo de comprobante".
      *
-     * @return VoucherType
+     * @return string VoucherType value
      */
-    public function getVoucherType(): Enum\VoucherType
+    public function getVoucherType(): string
     {
         return $this->voucherType;
     }

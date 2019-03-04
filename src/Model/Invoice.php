@@ -70,6 +70,20 @@ class Invoice extends Voucher
     protected $details;
 
     /**
+     * {@inheritdoc}
+     */
+    public function toArray(): array
+    {
+        $data = [];
+        $data['voucherType'] = parent::getVoucherType();
+
+        $date = parent::getDate();
+        $data['date'] = $date->format('Y-m-d H:i:s');
+
+        return $data;
+    }
+
+    /**
      * Set subrotal "Total sin impuestos".
      *
      * @return float
