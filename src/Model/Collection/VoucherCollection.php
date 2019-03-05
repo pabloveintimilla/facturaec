@@ -45,7 +45,7 @@ class VoucherCollection implements \Countable, \Iterator
     public function remove(IVoucher $voucher)
     {
         foreach ($this->vouchers as $key => $voucher) {
-            if ($voucher->getSequential() === $voucher->getSequential()) {
+            if ($voucher->getId() === $voucher->getId()) {
                 unset($this->vouchers[$key]);
             }
         }
