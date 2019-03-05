@@ -77,7 +77,12 @@ class Invoice extends Voucher implements ITaxable
     public function toArray(): array
     {
         $data = [];
-        $data['voucherType'] = parent::getVoucherType();
+
+        $details = [];
+        foreach ($this->details as $detail){
+            $details[] = (string) $detail;
+        }
+        $data['details'] = implode(' - ', $details);
 
         $date = parent::getDate();
         $data['date'] = $date->format('Y-m-d H:i:s');
