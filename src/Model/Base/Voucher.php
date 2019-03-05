@@ -380,12 +380,14 @@ abstract class Voucher implements IVoucher
     {
         return $this->validateTrait($this);
     }
+
     /**
      * {@inheritdoc}
      */
     public function getId()
     {
         $id = "$this->store-$this->point-$this->sequential";
+
         return $id;
     }
 }

@@ -10,11 +10,12 @@ namespace PabloVeintimilla\FacturaEC\Model\Base;
 interface IVoucher
 {
     /**
-     * Get identifier of voucher
+     * Get identifier of voucher.
      *
      * @return string Unique identifier
      */
     public function getId();
+
     /**
      * Convert object to array.
      *

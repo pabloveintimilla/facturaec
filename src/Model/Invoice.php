@@ -4,6 +4,7 @@ namespace PabloVeintimilla\FacturaEC\Model;
 
 use JMS\Serializer\Annotation as JMSSerializer;
 use PabloVeintimilla\FacturaEC\Model\Base\Voucher;
+use PabloVeintimilla\FacturaEC\Model\Base\ITaxable;
 
 /**
  * Invoice model (Factura).
@@ -13,7 +14,7 @@ use PabloVeintimilla\FacturaEC\Model\Base\Voucher;
  * 
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-class Invoice extends Voucher
+class Invoice extends Voucher implements ITaxable
 {
     /**
      * @var float
@@ -106,5 +107,13 @@ class Invoice extends Voucher
         $this->subtotal = $subtotal;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTaxs(): array
+    {
+        return $this->tax;
     }
 }
