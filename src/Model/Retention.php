@@ -3,6 +3,7 @@
 namespace PabloVeintimilla\FacturaEC\Model;
 
 use JMS\Serializer\Annotation as JMSSerializer;
+use PabloVeintimilla\FacturaEC\Model\Base\IDetail;
 
 /**
  * Retention model (Comprobrante de retención).
@@ -66,11 +67,11 @@ class Retention extends Voucher
     /**
      * Add a detail of voucher type.
      *
-     * @param Detail $detail Detail object
+     * @param IDetail $detail Detail object
      *
      * @return $this.
      */
-    public function addDetail(Detail $detail)
+    public function addDetail(IDetail $detail)
     {
         $this->details[] = $detail;
 

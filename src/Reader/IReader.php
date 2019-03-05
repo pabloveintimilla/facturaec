@@ -2,7 +2,7 @@
 
 namespace PabloVeintimilla\FacturaEC\Reader;
 
-use PabloVeintimilla\FacturaEC\Model\Voucher;
+use PabloVeintimilla\FacturaEC\Model\Base\IVoucher;
 
 /**
  * Define generic operations to process read.
@@ -20,9 +20,9 @@ interface IReader
     /**
      * Read data as voucher object.
      *
-     * @return Voucher Voucher object read
+     * @return IVoucher Voucher object read
      *
      * @throws \PabloVeintimilla\FacturaEC\Reader\ReaderException
      */
-    public function read(): Voucher;
+    public function read(): IVoucher;
 }

@@ -7,6 +7,6 @@ namespace PabloVeintimilla\FacturaEC;
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-class Exception
+class Exception extends \Exception
 {
 }

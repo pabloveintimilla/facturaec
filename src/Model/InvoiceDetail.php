@@ -3,6 +3,7 @@
 namespace PabloVeintimilla\FacturaEC\Model;
 
 use JMS\Serializer\Annotation as JMSSerializer;
+use PabloVeintimilla\FacturaEC\Model\Base\Detail;
 
 /**
  * Invoice detail model.

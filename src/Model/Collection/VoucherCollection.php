@@ -2,7 +2,7 @@
 
 namespace PabloVeintimilla\FacturaEC\Model\Collection;
 
-use PabloVeintimilla\FacturaEC\Model\Voucher;
+use PabloVeintimilla\FacturaEC\Model\Base\IVoucher;
 
 /**
  * Collection of voucher.
@@ -12,7 +12,7 @@ use PabloVeintimilla\FacturaEC\Model\Voucher;
 class VoucherCollection implements \Countable, \Iterator
 {
     /**
-     * @var Voucher[]
+     * @var IVoucher[]
      */
     private $vouchers = [];
 
@@ -24,11 +24,11 @@ class VoucherCollection implements \Countable, \Iterator
     /**
      * Add a voucher.
      * 
-     * @param Voucher $voucher
+     * @param IVoucher $voucher
      *
      * @return VoucherCollection
      */
-    public function add(Voucher $voucher)
+    public function add(IVoucher $voucher)
     {
         $this->vouchers[] = $voucher;
 
@@ -38,11 +38,11 @@ class VoucherCollection implements \Countable, \Iterator
     /**
      * Remove a voucher.
      * 
-     * @param Voucher $voucher Voucher object to remove
+     * @param IVoucher $voucher Voucher object to remove
      *
      * @return VoucherCollection
      */
-    public function remove(Voucher $voucher)
+    public function remove(IVoucher $voucher)
     {
         foreach ($this->vouchers as $key => $voucher) {
             if ($voucher->getSequential() === $voucher->getSequential()) {
@@ -60,7 +60,7 @@ class VoucherCollection implements \Countable, \Iterator
         return count($this->vouchers);
     }
 
-    public function current(): Voucher
+    public function current(): IVoucher
     {
         return $this->vouchers[$this->currentIndex];
     }

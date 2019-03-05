@@ -5,7 +5,7 @@ namespace PabloVeintimilla\FacturaEC\Reader;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
-use PabloVeintimilla\FacturaEC\Model\Voucher;
+use PabloVeintimilla\FacturaEC\Model\Base\IVoucher;
 
 /**
  * Reader from xml base with common operations.
@@ -39,9 +39,9 @@ class XML extends Reader
     /**
      * Deserialize xml into a Voucher object.
      *
-     * @return Voucher
+     * @return IVoucher
      */
-    public function read(): Voucher
+    public function read(): IVoucher
     {
         return $this->serializer
                 ->deserialize($this->data, $this->voucherType, 'xml');

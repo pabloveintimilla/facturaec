@@ -1,6 +1,6 @@
 <?php
 
-namespace PabloVeintimilla\FacturaEC\Model;
+namespace PabloVeintimilla\FacturaEC\Model\Base;
 
 /**
  * Define generic operations of a voucher.

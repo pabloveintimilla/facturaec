@@ -1,12 +1,13 @@
 <?php
 
-namespace PabloVeintimilla\FacturaEC\Model;
+namespace PabloVeintimilla\FacturaEC\Model\Base;
 
 use JMS\Serializer\Annotation as JMSSerializer;
 use Elao\Enum\Bridge\Symfony\Validator\Constraint\Enum as AssertEnum;
 use PabloVeintimilla\FacturaEC\Model\Enum\VoucherType;
 use PabloVeintimilla\FacturaEC\Model\Enum\EnviromentType;
 use PabloVeintimilla\FacturaEC\Validation\Validator;
+use PabloVeintimilla\FacturaEC\Model\Seller;
 
 /**
  * Base class of voucher 'Comprobante electrónico'.

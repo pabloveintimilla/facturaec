@@ -1,6 +1,6 @@
 <?php
 
-namespace PabloVeintimilla\FacturaEC\Model;
+namespace PabloVeintimilla\FacturaEC\Model\Base;
 
 use JMS\Serializer\Annotation as JMSSerializer;
 
@@ -12,10 +12,6 @@ use JMS\Serializer\Annotation as JMSSerializer;
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-abstract class Detail
+abstract class Detail implements IDetail
 {
-    /**
-     * Force to implement __toString usefull to transform.
-     */
-    abstract public function __toString();
 }
