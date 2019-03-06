@@ -5,6 +5,8 @@ namespace PabloVeintimilla\FacturaEC\Model;
 use JMS\Serializer\Annotation as JMSSerializer;
 use PabloVeintimilla\FacturaEC\Model\Base\Voucher;
 use PabloVeintimilla\FacturaEC\Model\Base\ITaxable;
+use PabloVeintimilla\FacturaEC\Model\Enum\IVAType;
+use PabloVeintimilla\FacturaEC\Model\Enum\TaxType;
 
 /**
  * Invoice model (Factura).
@@ -24,6 +26,7 @@ class Invoice extends Voucher implements ITaxable
      * @JMSSerializer\SerializedName("propina")
      */
     private $tip;
+
     /**
      * @var float
      *
@@ -32,6 +35,7 @@ class Invoice extends Voucher implements ITaxable
      * @JMSSerializer\SerializedName("totalDescuento")
      */
     private $discount;
+
     /**
      * @var float
      *
@@ -40,6 +44,7 @@ class Invoice extends Voucher implements ITaxable
      * @JMSSerializer\SerializedName("totalSinImpuestos")
      */
     private $subtotal;
+
     /**
      * @var Tax{]
      *
@@ -48,7 +53,8 @@ class Invoice extends Voucher implements ITaxable
      * @JMSSerializer\SerializedName("totalConImpuestos")
      * @JMSSerializer\XmlList(entry = "totalImpuesto")
      */
-    private $tax;
+    private $taxs;
+
     /**
      * @var float
      *
@@ -79,14 +85,52 @@ class Invoice extends Voucher implements ITaxable
         $data = [];
 
         $details = [];
-        foreach ($this->details as $detail){
+        foreach ($this->details as $detail) {
             $details[] = (string) $detail;
         }
         $data['details'] = implode(' - ', $details);
 
-        $date = parent::getDate();
-        $data['date'] = $date->format('Y-m-d H:i:s');
+        $date             = parent::getDate();
+        $data['date']     = $date->format('Y-m-d');
 
+        //Base
+        foreach (IVAType::values() as $key => $iva) {
+            $label   = 'SUBTOTAL_'.IVAType::getLabel($iva);
+            $value = 0;
+
+            foreach ($this->taxs as $tax) {
+                //If tax is IVA
+                if ($tax->getCode() == TaxType::IVA) {
+                    if ($tax->getPercentageCode() == $iva) {
+                        $value = $tax->getBase();
+                    }
+                }
+            }
+
+            $data[$label] = $value;
+        }
+
+        $data['subtotal'] = $this->subtotal;
+
+        //Taxs
+        foreach (IVAType::values() as $key => $iva) {
+            $label   = IVAType::getLabel($iva);
+            $value = 0;
+
+            foreach ($this->taxs as $tax) {
+                //If tax is IVA
+                if ($tax->getCode() == TaxType::IVA) {
+                    if ($tax->getPercentageCode() == $iva) {
+                        $value = $tax->getValue();
+                    }
+                }
+            }
+
+            $data[$label] = $value;
+        }
+
+        $data['total']    = $this->total;
+        
         return $data;
     }
 
@@ -119,6 +163,6 @@ class Invoice extends Voucher implements ITaxable
      */
     public function getTaxs(): array
     {
-        return $this->tax;
+        return $this->taxs;
     }
 }

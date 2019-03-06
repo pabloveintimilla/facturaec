@@ -15,11 +15,15 @@ final class EnviromentType extends Enum
 {
     use AutoDiscoveredValuesTrait;
     /**
+     * Producción
+     * 
      * @var string
      */
-    const PRODUCCION = '1';
+    const PRODUCTION = '1';
     /**
+     * Desarrollo
+     * 
      * @var string
      */
-    const DESARROLLO = '2';
+    const DEVELOPING = '2';
 }

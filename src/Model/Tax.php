@@ -70,4 +70,70 @@ class Tax
      * @JMSSerializer\SerializedName("valor")
      */
     private $value;
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    public function getPercentageCode()
+    {
+        return $this->percentageCode;
+    }
+
+    public function getRate()
+    {
+        return $this->rate;
+    }
+
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    public function getBase()
+    {
+        return $this->base;
+    }
+
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    public function setCode($code)
+    {
+        $this->code = $code;
+        return $this;
+    }
+
+    public function setPercentageCode($percentageCode)
+    {
+        $this->percentageCode = $percentageCode;
+        return $this;
+    }
+
+    public function setRate($rate)
+    {
+        $this->rate = $rate;
+        return $this;
+    }
+
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+        return $this;
+    }
+
+    public function setBase($base)
+    {
+        $this->base = $base;
+        return $this;
+    }
+
+    public function setValue($value)
+    {
+        $this->value = $value;
+        return $this;
+    }
 }
