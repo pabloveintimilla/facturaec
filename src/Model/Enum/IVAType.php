@@ -13,11 +13,36 @@ use Elao\Enum\AutoDiscoveredValuesTrait;
 class IVAType extends ReadableEnum
 {
     use AutoDiscoveredValuesTrait;
-    
-    const IVA_0      = '0';
-    const IVA_12     = '2';
-    const IVA_14     = '3';
-    const IVA_NONE   = '6';
+
+    /**
+     * IVA 0%.
+     *
+     * @var string
+     */
+    const IVA_0 = '0';
+    /**
+     * IVA 12%.
+     *
+     * @var string
+     */
+    const IVA_12 = '2';
+    /**
+     * IVA 14%.
+     *
+     * @var string
+     */
+    const IVA_14 = '3';
+    /**
+     * NO Objeto de IVA.
+     *
+     * @var string
+     */
+    const IVA_NONE = '6';
+    /**
+     * Exento de IVA.
+     *
+     * @var string
+     */
     const IVA_EXEMPT = '7';
 
     public static function readables(): array

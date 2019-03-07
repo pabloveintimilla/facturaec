@@ -12,10 +12,25 @@ use Elao\Enum\AutoDiscoveredValuesTrait;
  */
 class TaxType extends ReadableEnum
 {
-
     use AutoDiscoveredValuesTrait;
-    const IVA    = 2;
-    const ICE    = 3;
+
+    /**
+     * Impuesto al valor agregado (IVA).
+     *
+     * @var string
+     */
+    const IVA = 2;
+    /**
+     * Impuesto a consumos especiales (ICE).
+     *
+     * @var string
+     */
+    const ICE = 3;
+    /**
+     * Impuesto Redimible a las Botellas Plásticas No Retornables (IRBPNR.
+     * 
+     * @var string
+     */
     const IRBPNR = 5;
 
     public static function readables(): array
@@ -23,7 +38,7 @@ class TaxType extends ReadableEnum
         return [
             self::IVA => 'Impuesto al valor agregado (IVA)',
             self::ICE => 'Impuesto a consumos especiales (ICE)',
-            self::IRBPNR => ' Impuesto Redimible a las Botellas Plásticas No Retornables (IRBPNR)',
+            self::IRBPNR => 'Impuesto Redimible a las Botellas Plásticas No Retornables (IRBPNR)',
         ];
     }
 
@@ -36,7 +51,7 @@ class TaxType extends ReadableEnum
      */
     public static function getLabel($value)
     {
-        $class     = new \ReflectionClass(__CLASS__);
+        $class = new \ReflectionClass(__CLASS__);
         $constants = array_flip($class->getConstants());
 
         return $constants[$value];

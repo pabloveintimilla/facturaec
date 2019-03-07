@@ -32,6 +32,9 @@ class Csv extends Writer
      */
     public function write($filename)
     {
+        $header = array_keys($this->getVouchers()->current()->toArray());
+        $this->csvWriter->insertOne($header);
+
         foreach ($this->getVouchers() as $voucher) {
             $this->csvWriter->insertOne($voucher->toArray());
         }

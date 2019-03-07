@@ -8,6 +8,7 @@ use PabloVeintimilla\FacturaEC\Model\Enum\VoucherType;
 use PabloVeintimilla\FacturaEC\Model\Enum\EnviromentType;
 use PabloVeintimilla\FacturaEC\Validation\Validator;
 use PabloVeintimilla\FacturaEC\Model\Seller;
+use PabloVeintimilla\FacturaEC\Model\Buyer;
 
 /**
  * Base class of voucher 'Comprobante electrónico'.
@@ -104,7 +105,7 @@ abstract class Voucher implements IVoucher
     private $seller;
 
     /**
-     * @var Seller información voucher
+     * @var Buyer información voucher
      *
      * @JMSSerializer\Expose
      * @JMSSerializer\Type("PabloVeintimilla\FacturaEC\Model\Buyer")
@@ -389,5 +390,29 @@ abstract class Voucher implements IVoucher
         $id = "$this->store-$this->point-$this->sequential";
 
         return $id;
+    }
+
+    public function getBuyer(): Buyer
+    {
+        return $this->buyer;
+    }
+
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    public function setBuyer(Buyer $buyer)
+    {
+        $this->buyer = $buyer;
+
+        return $this;
+    }
+
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+
+        return $this;
     }
 }

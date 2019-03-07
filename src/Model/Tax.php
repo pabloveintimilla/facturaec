@@ -104,36 +104,42 @@ class Tax
     public function setCode($code)
     {
         $this->code = $code;
+
         return $this;
     }
 
     public function setPercentageCode($percentageCode)
     {
         $this->percentageCode = $percentageCode;
+
         return $this;
     }
 
     public function setRate($rate)
     {
         $this->rate = $rate;
+
         return $this;
     }
 
     public function setDiscount($discount)
     {
         $this->discount = $discount;
+
         return $this;
     }
 
     public function setBase($base)
     {
         $this->base = $base;
+
         return $this;
     }
 
     public function setValue($value)
     {
         $this->value = $value;
+
         return $this;
     }
 }
