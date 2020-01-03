@@ -115,6 +115,16 @@ class InvoiceDetail extends Detail
         return $this->total;
     }
 
+    public function getCodeMain()
+    {
+        return $this->codeMain;
+    }
+
+    public function getCodeAuxiliary()
+    {
+        return $this->codeAuxiliary;
+    }
+
     public function setDiscount($discount)
     {
         $this->discount = $discount;
@@ -146,6 +156,20 @@ class InvoiceDetail extends Detail
     public function setUnitPrice($unitPrice)
     {
         $this->unitPrice = $unitPrice;
+
+        return $this;
+    }
+
+    public function setCodeMain($codeMain)
+    {
+        $this->codeMain = $codeMain;
+
+        return $this;
+    }
+
+    public function setCodeAuxiliary($codeAuxiliary)
+    {
+        $this->codeAuxiliary = $codeAuxiliary;
 
         return $this;
     }

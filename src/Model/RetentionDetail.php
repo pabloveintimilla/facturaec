@@ -4,6 +4,7 @@ namespace PabloVeintimilla\FacturaEC\Model;
 
 use JMS\Serializer\Annotation as JMSSerializer;
 use Elao\Enum\Bridge\Symfony\Validator\Constraint\Enum as AssertEnum;
+use PabloVeintimilla\FacturaEC\Model\Base\Detail;
 
 /**
  * Retention detail model.

@@ -186,7 +186,8 @@ abstract class Voucher implements IVoucher
      */
     public function getVoucherType(): string
     {
-        return $this->voucherType;
+        return VoucherType::INVOICE;
+        //return $this->voucherType;
     }
 
     /**

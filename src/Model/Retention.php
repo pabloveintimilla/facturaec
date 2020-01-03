@@ -4,6 +4,7 @@ namespace PabloVeintimilla\FacturaEC\Model;
 
 use JMS\Serializer\Annotation as JMSSerializer;
 use PabloVeintimilla\FacturaEC\Model\Base\IDetail;
+use PabloVeintimilla\FacturaEC\Model\Base\Voucher;
 
 /**
  * Retention model (Comprobrante de retención).

@@ -15,7 +15,7 @@ use JMS\Serializer\Annotation as JMSSerializer;
 class Tax
 {
     /**
-     * @var string Establecimiento
+     * @var string Codigo
      *
      * @JMSSerializer\Expose
      * @JMSSerializer\Type ("string")
@@ -24,7 +24,7 @@ class Tax
      */
     private $code;
     /**
-     * @var string Establecimiento
+     * @var string Codigo porcentaje
      *
      * @JMSSerializer\Expose
      * @JMSSerializer\Type ("string")
@@ -33,7 +33,7 @@ class Tax
      */
     private $percentageCode;
     /**
-     * @var string Establecimiento
+     * @var string Tarifa
      *
      * @JMSSerializer\Expose
      * @JMSSerializer\Type ("float")
@@ -43,7 +43,7 @@ class Tax
      */
     private $rate;
     /**
-     * @var float Aply in total tax
+     * @var float Descuento adicional
      *
      * @JMSSerializer\Expose
      * @JMSSerializer\Type ("float")

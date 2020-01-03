@@ -22,4 +22,11 @@ interface IVoucher
      * @return array Data object as array
      */
     public function toArray(): array;
+
+    /**
+     * Convert object to xml.
+     *
+     * @return string Data object as xml
+     */
+    public function toXml();
 }

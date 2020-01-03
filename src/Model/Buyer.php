@@ -29,6 +29,15 @@ class Buyer
     private $identification;
 
     /**
+     * @var string Dirección comprador
+     *
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type("string")
+     * @JMSSerializer\SerializedName("direccionComprador")
+     */
+    private $address;
+
+    /**
      * Get company "Nombre o razón social de comprador".
      *
      * @return string
@@ -46,6 +55,16 @@ class Buyer
     public function getIdentification()
     {
         return $this->identification;
+    }
+
+    /**
+     * Get address "Dirección comprador".
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 
     /**
@@ -72,6 +91,20 @@ class Buyer
     public function setIdentification($identification)
     {
         $this->identification = $identification;
+
+        return $this;
+    }
+
+    /**
+     * Set address "Dirección comprador".
+     *
+     * @param string $address
+     *
+     * @return $this
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
 
         return $this;
     }
