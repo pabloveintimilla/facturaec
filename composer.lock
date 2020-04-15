@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d911296502050e7644c50030c7d5401",
+    "content-hash": "d57389eb016d5942ffc82365d8861d29",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2235,7 +2235,7 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "🔍 Nette Finder: find files and directories with an intuitive API.",
+            "description": "? Nette Finder: find files and directories with an intuitive API.",
             "homepage": "https://nette.org",
             "keywords": [
                 "filesystem",
@@ -2299,7 +2299,7 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "🍀 Nette RobotLoader: high performance and comfortable autoloader that will search and autoload classes within your application.",
+            "description": "? Nette RobotLoader: high performance and comfortable autoloader that will search and autoload classes within your application.",
             "homepage": "https://nette.org",
             "keywords": [
                 "autoload",
@@ -2372,7 +2372,7 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "🛠 Nette Utils: lightweight utilities for string & array manipulation, image handling, safe JSON encoding/decoding, validation, slug or strong password generating etc.",
+            "description": "? Nette Utils: lightweight utilities for string & array manipulation, image handling, safe JSON encoding/decoding, validation, slug or strong password generating etc.",
             "homepage": "https://nette.org",
             "keywords": [
                 "array",
@@ -5179,28 +5179,28 @@
         },
         {
             "name": "symfony/var-exporter",
-            "version": "v4.2.3",
+            "version": "4.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
-                "reference": "d8bf4424c232b55f4c1816037d3077a89258557e"
+                "reference": "6e95bdca4a4604da6c148729972d4b627a034b13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/d8bf4424c232b55f4c1816037d3077a89258557e",
-                "reference": "d8bf4424c232b55f4c1816037d3077a89258557e",
+                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/6e95bdca4a4604da6c148729972d4b627a034b13",
+                "reference": "6e95bdca4a4604da6c148729972d4b627a034b13",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3"
             },
             "require-dev": {
-                "symfony/var-dumper": "^4.1.1"
+                "symfony/var-dumper": "^4.1.1|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -5235,7 +5235,7 @@
                 "instantiate",
                 "serialize"
             ],
-            "time": "2019-01-16T20:35:37+00:00"
+            "time": "2020-04-15T15:55:41+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -5336,6 +5336,7 @@
                 "MIT"
             ],
             "description": "Slim wrapper around phpstan/phpdoc-parser with format preserving printer",
+            "abandoned": "rector/rector",
             "time": "2019-02-13T14:01:19+00:00"
         },
         {
@@ -5343,12 +5344,12 @@
             "version": "v5.4.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Symplify/CodingStandard.git",
+                "url": "https://github.com/symplify/coding-standard.git",
                 "reference": "840cc1e1d749d8b5db2afc1555a721fb526ee9a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Symplify/CodingStandard/zipball/840cc1e1d749d8b5db2afc1555a721fb526ee9a8",
+                "url": "https://api.github.com/repos/symplify/coding-standard/zipball/840cc1e1d749d8b5db2afc1555a721fb526ee9a8",
                 "reference": "840cc1e1d749d8b5db2afc1555a721fb526ee9a8",
                 "shasum": ""
             },
@@ -5390,12 +5391,12 @@
             "version": "v5.4.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Symplify/EasyCodingStandard.git",
+                "url": "https://github.com/symplify/easy-coding-standard.git",
                 "reference": "1dd2f30ba68a1fcd049104dc058dddb8c7494961"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Symplify/EasyCodingStandard/zipball/1dd2f30ba68a1fcd049104dc058dddb8c7494961",
+                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/1dd2f30ba68a1fcd049104dc058dddb8c7494961",
                 "reference": "1dd2f30ba68a1fcd049104dc058dddb8c7494961",
                 "shasum": ""
             },
@@ -5454,12 +5455,12 @@
             "version": "v5.4.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Symplify/PackageBuilder.git",
+                "url": "https://github.com/symplify/package-builder.git",
                 "reference": "780d136a5989e2c68fc6a8cb3c4a663c416bb19b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Symplify/PackageBuilder/zipball/780d136a5989e2c68fc6a8cb3c4a663c416bb19b",
+                "url": "https://api.github.com/repos/symplify/package-builder/zipball/780d136a5989e2c68fc6a8cb3c4a663c416bb19b",
                 "reference": "780d136a5989e2c68fc6a8cb3c4a663c416bb19b",
                 "shasum": ""
             },
@@ -5538,6 +5539,7 @@
                 "MIT"
             ],
             "description": "Set of utils for PHP_CodeSniffer and PHP CS Fixer.",
+            "abandoned": "https://github.com/symplify/codingstandard",
             "time": "2019-02-13T14:01:19+00:00"
         },
         {
