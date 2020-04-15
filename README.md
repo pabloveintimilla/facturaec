@@ -7,7 +7,7 @@
 
 ## Introduction
 
-> This is a PHP Library to handle electronic invoice of Ecuador (SRI), support: Invoices (facturas). Include operations to import from xml, read an transform (xml, json, cvs) data. This not implement user interface, this shoul be used as a library.
+> This is a PHP Library to handle electronic invoice of Ecuador (SRI), support: Invoices (facturas). Include operations to import from xml, read an transform (xml, json, cvs) data. This not implement user interface, this should be used as a library.
 
 ## Installation
 
