@@ -93,7 +93,7 @@ abstract class Voucher implements IVoucher
      * @JMSSerializer\XmlElement(cdata=false)
      * @JMSSerializer\SerializedName("tipoEmision")
      */
-    private $emissionType;
+    private $emissionType = 1;
 
     /**
      * @var Seller información voucher
@@ -126,6 +126,60 @@ abstract class Voucher implements IVoucher
      * @var Detail[]
      */
     protected $details = [];
+
+    public function otherinfoTributaria()
+    {
+        $keyaccess = $this->date->format('dmY')
+            . $this->voucherType . $this->seller->getIdentification()
+            . '1' . $this->store . $this->point . $this->sequential
+            . '123456781';
+
+        $string = '';
+        $string .= '<infoTributaria>';
+        $string .= '<ambiente>' . $this->enviromentType . '</ambiente>';
+        $string .= '<tipoEmision>' . $this->emissionType . '</tipoEmision>';
+        $string .= '<razonSocial>' . $this->seller->getCompany() . '</razonSocial>';
+        $string .= $this->seller->getName() === '' ? '<nombreComercial>' . $this->seller->getName() . '</nombreComercial>' : '';
+        $string .= '<ruc>' . $this->seller->getIdentification() . '</ruc>';
+        $string .= '<claveAcceso>' . $keyaccess . $this->generaDigitoModulo11($keyaccess) . '</claveAcceso>';
+        $string .= '<codDoc>' . $this->voucherType . '</codDoc>';
+        $string .= '<estab>' . $this->store . '</estab>';
+        $string .= '<ptoEmi>' . $this->point . '</ptoEmi>';
+        $string .= '<secuencial>' . $this->sequential . '</secuencial>';
+        $string .= '<dirMatriz>' . $this->seller->getAddress() . '</dirMatriz>';
+        $string .= '</infoTributaria>';
+
+        return $string;
+    }
+
+    private function generaDigitoModulo11($cadena)
+    {
+        $cadena = trim($cadena);
+        $baseMultiplicador = 7;
+        $aux = new \SplFixedArray(strlen($cadena));
+        $aux = $aux->toArray();
+        $multiplicador = 2;
+        $total = 0;
+        $verificador = 0;
+        for ($i = count($aux) - 1; $i >= 0; --$i) {
+            $aux[$i] = substr($cadena, $i, 1);
+            $aux[$i] *= $multiplicador;
+            ++$multiplicador;
+            if ($multiplicador > $baseMultiplicador) {
+                $multiplicador = 2;
+            }
+            $total += $aux[$i];
+        }
+        if (($total == 0) || ($total == 1))
+            $verificador = 0;
+        else {
+            $verificador = (11 - ($total % 11) == 11) ? 0 : 11 - ($total % 11);
+        }
+        if ($verificador == 10) {
+            $verificador = 1;
+        }
+        return $verificador;
+    }
 
     /**
      * Get date of emission of voucher.
@@ -184,7 +238,7 @@ abstract class Voucher implements IVoucher
      *
      * @return string VoucherType value
      */
-    public function getVoucherType(): string
+    public function getVoucherType()
     {
         return $this->voucherType;
     }
@@ -365,7 +419,7 @@ abstract class Voucher implements IVoucher
      *
      * @return $this.
      */
-    public function addDetail(Detail $detail)
+    public function addDetail($detail)
     {
         $this->details[] = $detail;
 

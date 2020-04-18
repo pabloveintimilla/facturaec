@@ -4,7 +4,6 @@ namespace PabloVeintimilla\FacturaEC\Model;
 
 use JMS\Serializer\Annotation as JMSSerializer;
 use PabloVeintimilla\FacturaEC\Model\Base\Voucher;
-use PabloVeintimilla\FacturaEC\Model\Base\ITaxable;
 use PabloVeintimilla\FacturaEC\Model\Enum\IVAType;
 use PabloVeintimilla\FacturaEC\Model\Enum\TaxType;
 
@@ -16,7 +15,7 @@ use PabloVeintimilla\FacturaEC\Model\Enum\TaxType;
  * 
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
-class Invoice extends Voucher implements ITaxable
+class Invoice extends Voucher
 {
     /**
      * @var float
@@ -46,14 +45,14 @@ class Invoice extends Voucher implements ITaxable
     private $subtotal;
 
     /**
-     * @var Tax{]
+     * @var Tax[]
      *
      * @JMSSerializer\Expose
      * @JMSSerializer\Type("array<PabloVeintimilla\FacturaEC\Model\Tax>")
      * @JMSSerializer\SerializedName("totalConImpuestos")
      * @JMSSerializer\XmlList(entry = "totalImpuesto")
      */
-    private $tax;
+    private $taxes = [];
 
     /**
      * @var float
@@ -76,6 +75,107 @@ class Invoice extends Voucher implements ITaxable
      * @return Detail[]
      */
     protected $details;
+
+    //----------------------------------------
+    private $PayMethods = [];
+    //----------------------------------------
+
+
+    public function otherXml()
+    {
+        $seller_id = $this->getBuyer()->getIdentification();
+        $string = '';
+        $string .= '<?xml version="1.0" encoding="UTF-8"?>';
+        $string .= '<factura id="comprobante" version="1.0.0">';
+        $string .= $this->otherinfoTributaria();
+        $string .= '<infoFactura>';
+        $string .= '<fechaEmision>' . $this->getdate()->format('d/m/Y') . '</fechaEmision>';
+        // $string .= '<dirEstablecimiento>null</dirEstablecimiento>';
+        $string .= $this->getSeller()->getSpecial() !== null ? '<contribuyenteEspecial>' . $this->getSeller()->getSpecial() . '</contribuyenteEspecial>' : '';
+        $string .= '<obligadoContabilidad>' . $this->getSeller()->getAccounting() . '</obligadoContabilidad>';
+        $string .= '<tipoIdentificacionComprador>' . (strlen($seller_id) === 13 ? '04' : '05') . '</tipoIdentificacionComprador>';
+        $string .= '<razonSocialComprador>' . $this->getBuyer()->getCompany() . '</razonSocialComprador>';
+        $string .= '<identificacionComprador>' . $seller_id . '</identificacionComprador>';
+        $string .= '<totalSinImpuestos>' . $this->subtotal . '</totalSinImpuestos>';
+        $string .= '<totalDescuento>' . $this->discount . '</totalDescuento>';
+        $string .= '<totalConImpuestos>';
+        foreach ($this->taxes as $tax) {
+            $string .= "<impuesto>";
+            $string .= "<codigo>" . $tax->getCode() . "</codigo>";
+            $string .= "<codigoPorcentaje>" . $tax->getPercentageCode() . "</codigoPorcentaje>";
+            $string .= "<baseImponible>" . $tax->getBase() . "</baseImponible>";
+            $string .= "<tarifa>" . $tax->getRate() . "</tarifa>";
+            $string .= "<valor>" . $tax->getValue() . "</valor>";
+            $string .= "</impuesto>";
+        }
+        $string .= '</totalConImpuestos>';
+        $string .= '<propina>' . ($this->tip == null ? 0 : $this->tip) . '</propina>';
+        $string .= '<importeTotal>' . round($this->total, 2) . '</importeTotal>';
+        $string .= '<moneda>' . $this->getCurrency() . '</moneda>';
+        $string .= '</infoFactura>';
+        $string .= '<pagos>';
+
+        foreach ($this->PayMethods as $pay) {
+            $string .= '<pago>';
+            $string .= '<formaPago>' . $pay->getCode() . '</formaPago>';
+            $string .= '<total>' . $pay->getValue() . '</total>';
+            if ($pay->getTerm() && strlen($pay->getUnitTime())) {
+                $string .= '<plazo>' . $pay->getTerm() . '</plazo>';
+                $string .= '<unidadTiempo>' . $pay->getUnitTime() . '</unidadTiempo>';
+            }
+            $string .= '</pago>';
+        }
+
+        $string .= '</pagos>';
+        $string .= '<detalles>';
+        foreach ($this->getDetails() as $detail) {
+            $string .= $detail->__toXml();
+        }
+        $string .= '</detalles>';
+        $string .= '<infoAdicional>';
+        $string .= '<campoAdicional nombre="Direccion">' . $this->getBuyer()->getAddress() . '</campoAdicional>';
+        $string .= '</infoAdicional>';
+        $string .= '</factura>';
+
+        return $string;
+    }
+
+    public function addOrUpdateTax(Tax $tax)
+    {
+        $gruping = $this->grupingExist($tax);
+        if ($gruping !== -1) {
+            $aux = $this->taxes[$gruping];
+            $aux->setBase($aux->getBase() + $tax->getBase());
+            $aux->setValue($aux->getValue() + $tax->getValue());
+        } else {
+            $aux = new Tax();
+            $aux->setCode($tax->getCode());
+            $aux->setPercentageCode($tax->getPercentageCode());
+            $aux->setRate($tax->getRate());
+            $aux->setBase($tax->getBase());
+            $aux->setValue($tax->getValue());
+            $this->taxes[] = $aux;
+        }
+
+        return $this;
+    }
+
+    private function grupingExist($tax)
+    {
+        $result = -1;
+        $i = 0;
+        while ($i < count($this->taxes) && $result == -1) {
+            if (
+                $this->taxes[$i]->getCode() === $tax->getCode() &&
+                $this->taxes[$i]->getPercentageCode() === $tax->getPercentageCode() &&
+                $this->taxes[$i]->getRate() === $tax->getRate()
+            ) {
+                $result = $i;
+            }
+            $i++;
+        }
+        return $result;
+    }
 
     /**
      * {@inheritdoc}
@@ -125,7 +225,7 @@ class Invoice extends Voucher implements ITaxable
         $data = [];
         foreach (IVAType::values() as $iva) {
             $value = 0;
-            $label = $base ? 'SUBTOTAL-'.IVAType::getLabel($iva) : IVAType::getLabel($iva);
+            $label = $base ? 'SUBTOTAL-' . IVAType::getLabel($iva) : IVAType::getLabel($iva);
 
             //Get IVA of current code
             $filter = array_filter($this->tax, function ($tax) use ($iva) {
@@ -141,6 +241,20 @@ class Invoice extends Voucher implements ITaxable
         }
 
         return $data;
+    }
+
+    /**
+     * Set descuento "Total descuento".
+     *
+     * @param float $discount
+     *
+     * @return $this
+     */
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+
+        return $this;
     }
 
     /**
@@ -168,10 +282,45 @@ class Invoice extends Voucher implements ITaxable
     }
 
     /**
+     * Set total "Total con impuestos".
+     *
+     * @param float $total
+     *
+     * @return $this
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public function getTaxs(): array
+    public function getTaxes(): array
     {
-        return $this->tax;
+        return $this->taxes;
+    }
+
+    /**
+     * Get the value of PayMethods
+     */
+    public function getPayMethods()
+    {
+        return $this->PayMethods;
+    }
+
+    /**
+     * Set the value of PayMethods
+     *
+     * @return  self
+     */
+
+    public function setPayMethods($PayMethods)
+    {
+        $this->PayMethods = $PayMethods;
+
+        return $this;
     }
 }

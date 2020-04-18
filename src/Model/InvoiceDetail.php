@@ -86,9 +86,56 @@ class InvoiceDetail extends Detail
      * @JMSSerializer\SerializedName("impuestos")
      * @JMSSerializer\XmlList(entry = "impuesto")
      * 
-     * @var Tax Impuesto
+     * @var Tax[] Impuesto
      */
-    private $tax = [];
+    private $taxes = [];
+
+    /*
+    * @override __toXml
+    */
+    public function __toXml()
+    {
+        $string = "";
+        $string .= "<detalle>";
+        $string .= "<codigoPrincipal>" . $this->codeMain . "</codigoPrincipal>";
+        $string .= "<codigoAuxiliar>" . $this->codeMain . "</codigoAuxiliar>";
+        $string .= "<descripcion>" . $this->description . "</descripcion>";
+        $string .= "<cantidad>" . $this->quantity . "</cantidad>";
+        $string .= "<precioUnitario>" . $this->unitPrice . "</precioUnitario>";
+        $string .= "<descuento>" . $this->discount . "</descuento>";
+        $string .= "<precioTotalSinImpuesto>" . ($this->total) . "</precioTotalSinImpuesto>";
+
+        $string .= "<impuestos>";
+        foreach ($this->taxes as $tax) {
+            $string .= "<impuesto>";
+            $string .= "<codigo>" . $tax->getCode() . "</codigo>";
+            $string .= "<codigoPorcentaje>" . $tax->getPercentageCode() . "</codigoPorcentaje>";
+            $string .= "<tarifa>" . $tax->getRate() . "</tarifa>";
+            $string .= "<baseImponible>" . $tax->getBase() . "</baseImponible>";
+            $string .= "<valor>" . $tax->getValue() . "</valor>";
+            $string .= "</impuesto>";
+        }
+        $string .= "</impuestos>";
+
+        $string .= "</detalle>";
+
+        return $string;
+    }
+
+    //----------------------------------------
+    /**
+     * Add a tax of voucher.
+     *
+     * @param Tax $tax Tax object
+     *
+     * @return $this.
+     */
+    public function addTax(Tax $tax)
+    {
+        $this->taxes[] = $tax;
+
+        return $this;
+    }
 
     public function getDescription()
     {
@@ -113,6 +160,11 @@ class InvoiceDetail extends Detail
     public function getTotal()
     {
         return $this->total;
+    }
+
+    public function getCodeMain()
+    {
+        return $this->codeMain;
     }
 
     public function setDiscount($discount)
@@ -146,6 +198,13 @@ class InvoiceDetail extends Detail
     public function setUnitPrice($unitPrice)
     {
         $this->unitPrice = $unitPrice;
+
+        return $this;
+    }
+
+    public function setCodeMain($codeMain)
+    {
+        $this->codeMain = $codeMain;
 
         return $this;
     }
