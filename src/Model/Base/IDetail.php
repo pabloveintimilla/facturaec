@@ -15,4 +15,6 @@ interface IDetail
      * @return string String representation of datail
      */
     public function __toString();
+
+    public function __toXml();
 }

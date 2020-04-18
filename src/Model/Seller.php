@@ -55,6 +55,26 @@ class Seller
     private $address;
 
     /**
+     * @var int Contribuyente especial
+     *
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("int")
+     * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("contribuyenteEspecial")
+     */
+    private $special;
+
+    /**
+     * @var string obligado contabilidad
+     *
+     * @JMSSerializer\Expose
+     * @JMSSerializer\Type ("string")
+     * @JMSSerializer\XmlElement(cdata=false)
+     * @JMSSerializer\SerializedName("obligadoContabilidad")
+     */
+    private $accounting;
+
+    /**
      * Get company "Se detalla el numero de RUC del Contribuyente".
      * 
      * @return string
@@ -92,6 +112,26 @@ class Seller
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * Get address "Contribuyente especial".
+     *
+     * @return string
+     */
+    public function getSpecial()
+    {
+        return $this->special;
+    }
+
+    /**
+     * Get address "Obligado contabilidad".
+     *
+     * @return string
+     */
+    public function getAccounting()
+    {
+        return $this->accounting;
     }
 
     /**
@@ -146,6 +186,34 @@ class Seller
     public function setAddress($address)
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Set special "Contribuyente especial".
+     *
+     * @param string $special
+     *
+     * @return $this
+     */
+    public function setSpecial($special)
+    {
+        $this->special = $special;
+
+        return $this;
+    }
+
+    /**
+     * Set accounting "Obligado contabilidad".
+     *
+     * @param string $accounting
+     *
+     * @return $this
+     */
+    public function setAccounting($accounting)
+    {
+        $this->accounting = $accounting;
 
         return $this;
     }
